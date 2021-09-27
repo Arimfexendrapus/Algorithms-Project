@@ -41,5 +41,13 @@
     <ClInclude Include="Insertion_Sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dataset.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\the google doc link">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -24,6 +24,16 @@ Target grade : A
 #include <cstdlib>
 #include <ctime>
 
+#include "Bubble_Sort.h"
+#include "Exchange_Sort.h"
+#include "Insertion_Sort.h"
+#include "Merge_Sort.h"
+#include "Quick_Sort.h"
+#include "Selection_Sort.h"
+#include "Swap.h"
+#include "Dataset.hpp"
+
+
 
 
 

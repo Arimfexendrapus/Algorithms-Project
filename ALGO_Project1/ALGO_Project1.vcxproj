@@ -143,12 +143,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bubble_Sort.h" />
+    <ClInclude Include="Dataset.hpp" />
     <ClInclude Include="Exchange_Sort.h" />
     <ClInclude Include="Insertion_Sort.h" />
     <ClInclude Include="Merge_Sort.h" />
     <ClInclude Include="Quick_Sort.h" />
     <ClInclude Include="Selection_Sort.h" />
     <ClInclude Include="Swap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\the google doc link" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
