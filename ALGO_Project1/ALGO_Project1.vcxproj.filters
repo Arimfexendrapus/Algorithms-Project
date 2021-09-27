@@ -20,28 +20,31 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Swap.h">
+    <ClInclude Include="Swap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Selection_Sort.h">
+    <ClInclude Include="Selection_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Exchange_Sort.h">
+    <ClInclude Include="Exchange_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Merge_Sort.h">
+    <ClInclude Include="Merge_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quick_Sort.h">
+    <ClInclude Include="Quick_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bubble_Sort.h">
+    <ClInclude Include="Bubble_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Insertion_Sort.h">
+    <ClInclude Include="Insertion_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dataset.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

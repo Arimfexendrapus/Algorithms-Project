@@ -142,14 +142,15 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bubble_Sort.h" />
+    <ClInclude Include="Bubble_Sort.hpp" />
     <ClInclude Include="Dataset.hpp" />
-    <ClInclude Include="Exchange_Sort.h" />
-    <ClInclude Include="Insertion_Sort.h" />
-    <ClInclude Include="Merge_Sort.h" />
-    <ClInclude Include="Quick_Sort.h" />
-    <ClInclude Include="Selection_Sort.h" />
-    <ClInclude Include="Swap.h" />
+    <ClInclude Include="Exchange_Sort.hpp" />
+    <ClInclude Include="Heap_Sort.hpp" />
+    <ClInclude Include="Insertion_Sort.hpp" />
+    <ClInclude Include="Merge_Sort.hpp" />
+    <ClInclude Include="Quick_Sort.hpp" />
+    <ClInclude Include="Selection_Sort.hpp" />
+    <ClInclude Include="Swap.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\the google doc link" />
