@@ -6,12 +6,12 @@ using namespace std;
 
 //Insertion sort
 template <typename T>
-void fillArray(T myArray[], int arraySize, int range)
+void fillArray(T myArray[], int arraySize)
 {
     srand(time(0));
     for (int i = 0; i < arraySize; i++)
     {
-        int numRand = rand() % range/5;
+        int numRand = rand() % arraySize/5;
         myArray[i] = numRand;
     }
 }
