@@ -27,6 +27,16 @@ Target grade : A
 
 using namespace std;
 
+void fillArray(int myArray[], int arraySize)
+{
+    srand(time(0));
+    for (int i = 0; i < arraySize; i++)
+    {
+        int numRand = rand() % 100;
+        myArray[i] = numRand;
+    }
+}
+
 template <typename T>
 void Swap(T& a, T& b)  //Cannot be 'swap' (lowercase) since it's a pre-defined function
 {
