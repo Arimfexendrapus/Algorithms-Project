@@ -2,7 +2,10 @@
 
 Name : Tyler Felts, Ethan Cox, Drew Faust, Connor Bass
 Date : 09-27/2021
-Class : CSC 1720
+Class : Algorithms
+
+
+ughhh why isnt this workinggg
 
 Description : Algorithms Project
 
