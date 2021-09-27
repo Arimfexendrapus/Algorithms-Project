@@ -47,6 +47,18 @@
     <ClInclude Include="Heap_Sort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Random_Array.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Many_Duplicates_Array.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reverse_Array.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reverse_Exchange_Sort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\the google doc link">
