@@ -2,7 +2,7 @@
   Author: Ethan Cox
   Date: 9/27/2021
   Compilation Instructions: None
-  Function:
+  Function: generates a unique array of X elements of numeric values between the values Y and Z of type T
   
   Usage examples:
   'Dataset<int,20> array' is an array of 20 random integers, distributed uniformly
