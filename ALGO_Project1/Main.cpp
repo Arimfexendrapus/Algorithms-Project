@@ -37,6 +37,10 @@ Target grade : A
 
 
 
+
 using namespace std;
 
-
+int main()
+{
+    
+}
