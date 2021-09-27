@@ -53,13 +53,6 @@ void exchangeSort(T array[], const size_t size)
 
 
 
-template <typename T>
-void Swap(T& a, T& b)
-{
-    T temp(move(a));
-    a = move(b);
-    b = move(temp);
-}
 
 //Selection sort
 template <typename T>
@@ -90,14 +83,6 @@ void selectionSort(T array[], const size_t size)
 
 
 
-//Swap function
-template <typename T>
-void Swap(T& a, T& b)
-{
-    T temp(move(a));
-    a = move(b);
-    b = move(temp);
-}
 
 //Bubble sort
 template <typename T>
