@@ -10,7 +10,7 @@
   'Dataset<int,20,REVERSE_SORTED> array' is an array of 20 random, sorted integers, distributed RANDOMly
   'Dataset<int,20,FEW_UNIQUE> array' is an array of 20, few-unique integers
 
-  WARNINGS: do not use floating-point numbers. It have not been implemented.
+  WARNINGS: do not use floating-point numbers. It has not been implemented.
 */
 
 //Header guard
