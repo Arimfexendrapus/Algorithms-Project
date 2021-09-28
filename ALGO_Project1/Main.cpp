@@ -28,6 +28,7 @@ Target grade : A
 #include "Exchange_Sort.hpp"
 #include "Insertion_Sort.hpp"
 #include "Merge_Sort.hpp"
+#include "Random_Array.hpp"
 //#include "Selection_Sort.hpp"
 #include "Swap.hpp"
 #include "Dataset.hpp"
@@ -44,8 +45,9 @@ using namespace std;
 
 int main()
 {
-    int array[20];
-    nearlySortedArray(array, 20, 20);
-    printArray(array, 20);
+    int array[2];
+    randomArray(array, 2, 2);
+    exchangeSort(array, 2);
+    printArray(array, 2);
     
 }

@@ -10,7 +10,7 @@ template <typename T>
 void exchangeSort(T array[], const size_t size)
 {
     //For every element in the array
-    for (size_t i = 0; i < size - 1; i++)
+    for (size_t i = 0; i < size; i++)
     {
         //Compare every element after it to the current element (i), swapping if needed
         for (size_t j = i + 1; j < size; j++)
