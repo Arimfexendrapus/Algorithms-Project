@@ -3,14 +3,14 @@
   Date: 9/27/2021
   Compilation Instructions: None
   Function: generates a unique array of X elements of numeric values between the values Y and Z of type T
-  
+
   Usage examples:
-  'Dataset<int,20> array' is an array of 20 random integers, distributed uniformly
-  'Dataset<int,20,SORTED> array' is an array of 20 random, sorted integers, distributed uniformly
-  'Dataset<int,20,REVERSE_SORTED> array' is an array of 20 random, sorted integers, distributed uniformly
+  'Dataset<int,20> array' is an array of 20 random integers, distributed RANDOMly
+  'Dataset<int,20,SORTED> array' is an array of 20 random, sorted integers, distributed RANDOMly
+  'Dataset<int,20,REVERSE_SORTED> array' is an array of 20 random, sorted integers, distributed RANDOMly
   'Dataset<int,20,FEW_UNIQUE> array' is an array of 20, few-unique integers
-  
-  WARNINGS: do not use floating-point numbers or the FEW_UNIQUE distribution. They have not been implemented.
+
+  WARNINGS: do not use floating-point numbers. It have not been implemented.
 */
 
 //Header guard
@@ -29,15 +29,16 @@ using namespace std;
 
 
 //Different types of distribution
-enum Distribution { UNIFORM, SORTED, REVERSE_SORTED, FEW_UNIQUE};   //TODO: implement FEW_UNIQUE
+enum Distribution { RANDOM, SORTED, REVERSE_SORTED, FEW_UNIQUE};   //TODO: implement FEW_UNIQUE
 
 
 //Dataset class contains a smart pointer to an array of random numeric values
-template <typename T, size_t size, Distribution distribution = UNIFORM>  //Default distribution is 'UNIFORM' (generic random dataset)
+template <typename T, size_t size, Distribution distribution = RANDOM>  //Default distribution is 'RANDOM' (generic random dataset)
 class Dataset
 {
-    //Type-guarding against non-numeric types
+    //Guarding against non-numeric types and arrays of an invalid sizes
     static_assert(is_arithmetic<T>::value, "Dataset class can only be a numeric type (int, float, double...etc)");
+    static_assert(size >= 12,"the size of a dataset cannot be less than 12!");
 
     private:
         T* array;
@@ -49,7 +50,7 @@ class Dataset
         //Public special methods
         Dataset(T = 1000, T = 0);  //default maximum, minimum
         ~Dataset();
-        
+
         //Public methods
         T* get();
         void print() const;
@@ -69,11 +70,11 @@ class Dataset
 // ********** SPECIAL MEMBER FUNCTIONS **********
 
 //Constructor
-template <typename T, size_t size, Distribution distribution> 
+template <typename T, size_t size, Distribution distribution>
 Dataset<T, size, distribution>::Dataset(T max, T min): length(size)   //Initializer list for const data member
 {
     //Declare a new array
-    array = new T[size]; 
+    array = new T[size];
 
     //Create + seed Mersenne Twister random number generator
     random_device rd;
@@ -81,9 +82,9 @@ Dataset<T, size, distribution>::Dataset(T max, T min): length(size)   //Initiali
 
     //Apply distribution
     uniform_int_distribution<T> dist(min, max);   // TODO: allow for float/double overload via 'if constexpr' conditional compilation
-                                         
+
     //Create dataset (separating out FEW_UNIQUE sinces its generation method is ...unique)
-    if (distribution == UNIFORM or distribution == SORTED or distribution == REVERSE_SORTED)  //Uglier, but gets the point across
+    if (distribution == RANDOM or distribution == SORTED or distribution == REVERSE_SORTED)  //Uglier and slower, but more clear.
     {
         //Fill the array with random values
         for(size_t i=0; i < size; i++)
@@ -92,15 +93,43 @@ Dataset<T, size, distribution>::Dataset(T max, T min): length(size)   //Initiali
             array[i] = dist(RNG);
         }
     }
+    else //if (distribution == FEW_UNIQUE)
+    {
+        /*
+        FEW_UNIQUE Implementation:
+        1. Generate a set random set of 6-12 random values (filling the first 6-12 elements of the array)
+        2. Use the filled slots to randomly fill the rest of the dataset
+        */
+
+        //Apply random distributions
+        uniform_int_distribution<T> sampleDist(6,12);      //The amount of random elements to propgate the array with
+        uniform_int_distribution<T> selectionDist(0,11);  //Which array element to draw from
+
+        //Random amount of integers (6-12)
+        size_t amount = sampleDist(RNG), i = 0;  //sampleDist(RNG);
+
+        //Populate the sample list with a few random values
+        for(i; i < amount; i++)
+        {
+            array[i] = dist(RNG);
+        }
+
+        //Use the random sample to propagate the rest of the data
+        for(i; i < size; i++)
+        {
+            //Generate a random value from the sample set
+            array[i] = array[selectionDist(RNG) % amount];
+        }
+    }
 
 
-    //Sort? 
+    //Sort?
     if (distribution == SORTED)
     {
         //Sort in non-decreasing order (0 -> 1000, with repeats)
-        sort(array, array + length, [](size_t i, size_t j) {return i < j;});   //lambda expression
+        sort(array, array + length, [](size_t i, size_t j) {return i < j;});  //lambda expression
     }
-    
+
     //Reverse sort?
     if (distribution == REVERSE_SORTED)
     {
@@ -129,7 +158,7 @@ T* Dataset<T, size, distribution>::get()
 //Print
 template <typename T, size_t size, Distribution distribution>
 void Dataset<T, size, distribution>::print() const
-{   
+{
     //Print float-point numbers with 2 points after the decimal
     cout << fixed << setprecision(2);
 
