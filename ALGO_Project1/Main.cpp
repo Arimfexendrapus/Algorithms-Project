@@ -29,11 +29,18 @@ Target grade : A
 #include "Insertion_Sort.hpp"
 #include "Merge_Sort.hpp"
 #include "Random_Array.hpp"
-//#include "Selection_Sort.hpp"
+//#include "Quick_Sort.hpp"
+#include "Selection_Sort.hpp"
 #include "Swap.hpp"
 #include "Dataset.hpp"
 #include "Nearly_Sorted_Array.hpp"
 #include "Print_Array.hpp"
+#include "Heap_Sort.hpp"
+#include "Many_Duplicates_Array.hpp"
+#include "Reverse_Array.hpp"
+#include "Reverse_Exchange_Sort.hpp"
+
+
 
 
 
