@@ -45,9 +45,9 @@ using namespace std;
 
 int main()
 {
-    int array[2];
-    randomArray(array, 2, 2);
-    exchangeSort(array, 2);
-    printArray(array, 2);
+    int array[10];
+    randomArray(array, 10, 10);
+    exchangeSort(array, 10);
+    printArray(array, 10);
     
 }

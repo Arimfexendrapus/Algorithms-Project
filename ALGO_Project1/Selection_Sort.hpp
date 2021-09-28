@@ -13,7 +13,7 @@ void selectionSort(T array[], const size_t size)
     size_t min;
 
     //For every element in the array
-    for (size_t i = 0; i < size; ++i)
+    for (size_t i = 0; i < size-1; ++i)
     {
         //Set the 'smallest' number to the current index
         min = i;
