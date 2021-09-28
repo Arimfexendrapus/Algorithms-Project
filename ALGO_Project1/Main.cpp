@@ -28,10 +28,12 @@ Target grade : A
 #include "Exchange_Sort.hpp"
 #include "Insertion_Sort.hpp"
 #include "Merge_Sort.hpp"
-#include "Quick_Sort.hpp"
-#include "Selection_Sort.hpp"
+//#include "Selection_Sort.hpp"
 #include "Swap.hpp"
 #include "Dataset.hpp"
+#include "Nearly_Sorted_Array.hpp"
+#include "Print_Array.hpp"
+
 
 
 
@@ -42,5 +44,8 @@ using namespace std;
 
 int main()
 {
+    int array[20];
+    nearlySortedArray(array, 20, 20);
+    printArray(array, 20);
     
 }
