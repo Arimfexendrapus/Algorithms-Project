@@ -22,6 +22,7 @@ Target grade : A
 #include <math.h>
 #include <cmath>
 #include <cstdlib>
+#include <chrono>
 #include <ctime>
 
 #include "Bubble_Sort.hpp"
@@ -52,6 +53,22 @@ using namespace std;
 
 int main()
 {
+    std::chrono::duration<double, array[10];
+    for (int i = 0; i < 100; i++)
+    {
+
+    }
+    auto start = chrono::high_resolution_clock::now();
+    
+    //
+    //  Insert the code that will be timed
+    
+    auto end = chrono::high_resolution_clock::now();
+    // Store the time difference between start and end
+    auto diff = (end - start);
+
+
+
     int array[10];
     randomArray(array, 10, 10);
     exchangeSort(array, 10);
