@@ -18,19 +18,19 @@ Target grade : A
 #include <iostream>
 #include <chrono>
 
-#include "Bubble_Sort.hpp"
-#include "Exchange_Sort.hpp"
-#include "Insertion_Sort.hpp"
-#include "Merge_Sort.hpp"
-//#include "Quick_Sort.hpp"
-#include "Selection_Sort.hpp"
-#include "Swap.hpp"
+#include "Bubble_Sort.cpp"
+#include "Exchange_Sort.cpp"
+#include "Insertion_Sort.cpp"
+#include "Merge_Sort.cpp"
+//#include "Quick_Sort.cpp"
+#include "Selection_Sort.cpp"
+#include "Swap.cpp"
 #include "Dataset.hpp"
-#include "Nearly_Sorted_Array.hpp"
-#include "Print_Array.hpp"
-#include "Heap_Sort.hpp"
-#include "Many_Duplicates_Array.hpp"
-#include "Reverse_Exchange_Sort.hpp"
+#include "Nearly_Sorted_Array.cpp"
+#include "Print_Array.cpp"
+#include "Heap_Sort.cpp"
+#include "Many_Duplicates_Array.cpp"
+#include "Reverse_Exchange_Sort.cpp"
 
 using namespace std;
 using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
