@@ -30,7 +30,6 @@ Target grade : A
 #include "Print_Array.hpp"
 #include "Heap_Sort.hpp"
 #include "Many_Duplicates_Array.hpp"
-#include "Reverse_Array.hpp"
 #include "Reverse_Exchange_Sort.hpp"
 
 using namespace std;
@@ -46,7 +45,7 @@ int main()
     {
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
-        bubbleSort(array, 1000);
+        bubbleSort<int>(array, 1000);
 
         chrono::steady_clock::time_point end = chrono::steady_clock::now();  //End time
 
@@ -75,7 +74,7 @@ int main()
     {
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
-        exchangeSort(array, 1000);
+        exchangeSort<int>(array, 1000);
 
         chrono::steady_clock::time_point end = chrono::steady_clock::now();  //End time
 
@@ -104,7 +103,7 @@ int main()
     {
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
-        heapSort(array, 1000);
+        heapSort<int>(array, 1000);
 
         chrono::steady_clock::time_point end = chrono::steady_clock::now();  //End time
 
@@ -131,7 +130,7 @@ int main()
     {
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
-        insertionSort(array, 1000);
+        insertionSort<int>(array, 1000);
 
         chrono::steady_clock::time_point end = chrono::steady_clock::now();  //End time
 
