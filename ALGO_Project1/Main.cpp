@@ -45,11 +45,8 @@ Target grade : A
 
 
 
-
-
-
-
 using namespace std;
+using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
 
 int main()
 {
@@ -61,7 +58,6 @@ int main()
 
     for (int i = 0; i < 1000; i++)
     {
-        using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
         bubbleSort(array, 1000);
@@ -91,7 +87,6 @@ int main()
 
     for (int i = 0; i < 1000; i++)
     {
-        using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
         exchangeSort(array, 1000);
@@ -121,7 +116,6 @@ int main()
 
     for (int i = 0; i < 1000; i++)
     {
-        using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
         heapSort(array, 1000);
@@ -149,7 +143,6 @@ int main()
 
     for (int i = 0; i < 1000; i++)
     {
-        using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
         chrono::steady_clock::time_point start = chrono::steady_clock::now();  //Start time
 
         insertionSort(array, 1000);
