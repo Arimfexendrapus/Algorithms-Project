@@ -36,11 +36,25 @@ Target grade : A
 using namespace std;
 using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
 
+#define SIZE(array) sizeof(array) / sizeof(array[0])
+
+double average(double array[], const size_t size)
+{
+    double sum = 0;
+
+    for(int i=0; i < size; i++)
+    {
+        sum += array[i];
+    }
+
+    return sum / size;
+}
+
+// DRIVER CODE //
 int main()
 {
     //testing bubble sort
     Dataset<int,1000,RANDOM> array;
-
     double times[array.length];
 
     for (int i = 0; i < array.length; i++)
@@ -57,13 +71,7 @@ int main()
         array.genNewData();
     }
 
-    double sum = 0;
-    for (int i = 0; i < array.length; i++)
-    {
-        sum = times[i] + sum;
-    }
-    double average = sum / array.length;
-    cout << "the average time to sort an array of 1000 elements using bubble sort is: " << average <<" over " << array.length << " intervals" <<endl;
+    cout << "the average time to sort an array of 1000 elements using bubble sort is: " << average(times, SIZE(times)) <<" over " << array.length << " intervals" <<endl;
 
 
     //testing exchange sort
@@ -86,8 +94,7 @@ int main()
         array.genNewData();
     }
 
-    average = sum / array.length;
-    cout << "the average time to sort an array of 1000 elements using exchange sort is: " << average << " over " << array.length << " intervals" << endl;
+    cout << "the average time to sort an array of 1000 elements using exchange sort is: " << average(times2, SIZE(times2)) << " over " << array.length << " intervals" << endl;
 
 
     //testing heap sort
@@ -110,13 +117,7 @@ int main()
         array.genNewData();
     }
 
-    sum = 0;
-    for (int i = 0; i < array.length; i++)
-    {
-        sum = times3[i] + sum;
-    }
-    average = sum / array.length;
-    cout << "the average time to sort an array of 1000 elements using heap sort is: " << average << " over " << array.length << " intervals" << endl;
+    cout << "the average time to sort an array of 1000 elements using heap sort is: " << average(times3, SIZE(times3)) << " over " << array.length << " intervals" << endl;
 
     //testing insertion sort
 
@@ -137,12 +138,6 @@ int main()
         array.genNewData();
     }
 
-    sum = 0;
-    for (int i = 0; i < array.length; i++)
-    {
-        sum = times4[i] + sum;
-    }
-    average = sum / array.length;
-    cout << "the average time to sort an array of 1000 elements using insertion sort is: " << average << " over " << array.length << " intervals" << endl;
+    cout << "the average time to sort an array of 1000 elements using insertion sort is: " << average(times4, SIZE(times4)) << " over " << array.length << " intervals" << endl;
 
 }

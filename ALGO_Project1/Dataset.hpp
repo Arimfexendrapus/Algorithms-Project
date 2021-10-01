@@ -22,7 +22,8 @@
 #include <random>         //Random number generators
 #include <algorithm>     //Sorting functions
 #include <type_traits>  //Type-info for type-guarding
-#include <new>          //Contains std::bad_alloc
+#include <iterator>    //Contains begin() and end()
+#include <new>        //Contains std::bad_alloc
 
 //Native C Libraries
 #include <cstddef>     //Contains 'size_t'
@@ -63,6 +64,10 @@ class Dataset
         void genNewData(T = 1000, T = 0);    //Helper function: generates a new dataset of the appropriate type (RANDOM, SORTED, REVERSE_SORTED, FEW_UNIQUE)
         void print() const;                 //Prints the array
         T* get();                          //Return a pointer to the internal array
+
+        //Iterators
+        auto begin() const;
+        auto end() const;
 
         //Operator overloads
         operator T*() const;       //Implicit conversion to pointer (for passing to T[])
@@ -212,6 +217,24 @@ void Dataset<T, size, distribution>::print() const
         cout << array[i] << " ";
     }
     cout << endl;
+}
+
+
+// ********** ITERATORS ********** 
+
+//Begin iterator
+template <typename T, size_t size, Distribution distribution>
+auto Dataset<T, size, distribution>::begin() const
+{
+    return begin(array);
+}
+
+
+//End iterator
+template <typename T, size_t size, Distribution distribution>
+auto Dataset<T, size, distribution>::end() const
+{
+    return end(array);
 }
 
 // ********** OPERATOR OVERLOADING **********
