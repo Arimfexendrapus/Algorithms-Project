@@ -35,6 +35,8 @@ Target grade : A
 using namespace std;
 using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
 
+#define SIZE(array) sizeof(array) / sizeof(array[0])
+
 int main()
 {
     //testing bubble sort
