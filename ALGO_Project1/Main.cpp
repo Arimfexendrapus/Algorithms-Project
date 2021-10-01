@@ -16,20 +16,12 @@ Target grade : A
 
 
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <iomanip>
-#include <math.h>
-#include <cmath>
-#include <cstdlib>
 #include <chrono>
-#include <ctime>
 
 #include "Bubble_Sort.hpp"
 #include "Exchange_Sort.hpp"
 #include "Insertion_Sort.hpp"
 #include "Merge_Sort.hpp"
-#include "Random_Array.hpp"
 //#include "Quick_Sort.hpp"
 #include "Selection_Sort.hpp"
 #include "Swap.hpp"
@@ -41,19 +33,13 @@ Target grade : A
 #include "Reverse_Array.hpp"
 #include "Reverse_Exchange_Sort.hpp"
 
-
-
-
-
 using namespace std;
 using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
 
 int main()
 {
     //testing bubble sort
-
-    int array[1000];
-    randomArray(array, 1000, 1000);
+    Dataset<int,1000,RANDOM> array;
     double times[1000];
 
     for (int i = 0; i < 1000; i++)
@@ -67,7 +53,7 @@ int main()
         cout << fixed;   //Prevents number being represented in scientific notation
         times[i] = chrono::duration_cast<fpseconds>(end - start).count();
 
-        randomArray(array, 1000, 1000);
+        array.genNewData();
     }
 
     double sum = 0;
@@ -82,7 +68,7 @@ int main()
     //testing exchange sort
 
 
-    randomArray(array, 1000, 1000);
+    array.genNewData();
     double times2[1000];
 
     for (int i = 0; i < 1000; i++)
@@ -96,7 +82,7 @@ int main()
         cout << fixed;   //Prevents number being represented in scientific notation
         times2[i] = chrono::duration_cast<fpseconds>(end - start).count();
 
-        randomArray(array, 1000, 1000);
+        array.genNewData();
     }
 
     sum = 0;
@@ -111,7 +97,7 @@ int main()
     //testing heap sort
 
 
-    randomArray(array, 1000, 1000);
+    array.genNewData();
     double times3[1000];
 
     for (int i = 0; i < 1000; i++)
@@ -125,7 +111,7 @@ int main()
         cout << fixed;   //Prevents number being represented in scientific notation
         times3[i] = chrono::duration_cast<fpseconds>(end - start).count();
 
-        randomArray(array, 1000, 1000);
+        array.genNewData();
     }
 
     sum = 0;
@@ -138,7 +124,7 @@ int main()
 
     //testing insertion sort
 
-    randomArray(array, 1000, 1000);
+    array.genNewData();
     double times4[1000];
 
     for (int i = 0; i < 1000; i++)
@@ -152,7 +138,7 @@ int main()
         cout << fixed;   //Prevents number being represented in scientific notation
         times4[i] = chrono::duration_cast<fpseconds>(end - start).count();
 
-        randomArray(array, 1000, 1000);
+        array.genNewData();
     }
 
     sum = 0;
