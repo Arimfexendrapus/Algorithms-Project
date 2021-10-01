@@ -35,11 +35,11 @@ enum Distribution { RANDOM, SORTED, REVERSE_SORTED, FEW_UNIQUE };
 
 
 //Dataset class contains a smart pointer to an array of random numeric values
-template <typename T, size_t size, Distribution distribution = RANDOM>  //Default distribution is 'RANDOM' (generic random dataset)
+template <typename T, size_t size, Distribution distT = RANDOM>  //Default distribution is 'RANDOM' (generic random dataset)
 class Dataset
 {
     //Guarding against non-numeric types and arrays of an invalid sizes
-    static_assert(is_arithmetic<T>::value, "Dataset class can only be a numeric type (int, float, double...etc)");
+    static_assert(is_integral<T>::value, "Dataset class can only be a integral type (int, unsigned int, short...etc)");
     static_assert(size >= 12,"the size of a dataset cannot be less than 12!");
 
 
@@ -66,8 +66,8 @@ class Dataset
         T* get();                          //Return a pointer to the internal array
 
         //Iterators
-        auto begin() const;
-        auto end() const;
+        T* begin() const;
+        T* end() const;
 
         //Operator overloads
         operator T*() const;       //Implicit conversion to pointer (for passing to T[])
@@ -84,8 +84,8 @@ class Dataset
 // ********** SPECIAL MEMBER FUNCTIONS **********
 
 //Constructor
-template <typename T, size_t size, Distribution distribution>
-Dataset<T, size, distribution>::Dataset(T max, T min): length(size)   //Initializer list for const data member
+template <typename T, size_t size, Distribution distT>
+Dataset<T, size, distT>::Dataset(T max, T min): length(size)   //Initializer list for const data member
 {
     //Initialize the array
     try
@@ -102,8 +102,8 @@ Dataset<T, size, distribution>::Dataset(T max, T min): length(size)   //Initiali
 }
 
 //Deconstructor
-template <typename T, size_t size, Distribution distribution>
-Dataset<T, size, distribution>::~Dataset()
+template <typename T, size_t size, Distribution distT>
+Dataset<T, size, distT>::~Dataset()
 {
     //Automatically free internal array
     delete [] array;
@@ -113,8 +113,8 @@ Dataset<T, size, distribution>::~Dataset()
 // ********** PRIVATE METHODS ********** //
 
 //Generate random data (for: RANDOM, SORTED, REVERSE_SORTED)
-template <typename T, size_t size, Distribution distribution>
-void Dataset<T, size, distribution>::genRandomData(T max, T min)
+template <typename T, size_t size, Distribution distT>
+void Dataset<T, size, distT>::genRandomData(T max, T min)
 {
     //Create + seed Mersenne Twister random number generator
     random_device rd;
@@ -131,14 +131,14 @@ void Dataset<T, size, distribution>::genRandomData(T max, T min)
     }
 
     //Sort?
-    if (distribution == SORTED)
+    if (distT == SORTED)
     {
         //Sort in non-decreasing order (0 -> 1000, with repeats)
         sort(array, array + length, [](size_t i, size_t j) {return i < j;});  //lambda expression
     }
 
     //Reverse sort?
-    if (distribution == REVERSE_SORTED)
+    if (distT == REVERSE_SORTED)
     {
         //Sort in non-increasing order (1000 -> 0, with repeats)
         sort(array, array + length, [](size_t i, size_t j) {return i > j;});  //lambda expression
@@ -146,15 +146,15 @@ void Dataset<T, size, distribution>::genRandomData(T max, T min)
 }
 
 //Generate few-unique data (for: FEW_UNIQUE)
-template <typename T, size_t size, Distribution distribution>
-void Dataset<T, size, distribution>::genUniqueData(T max, T min)
+template <typename T, size_t size, Distribution distT>
+void Dataset<T, size, distT>::genUniqueData(T max, T min)
 {
     //Create + seed Mersenne Twister random number generator
     random_device rd;
     mt19937 RNG(rd());
 
     //Apply distribution
-    uniform_int_distribution<T> dist(min, max);   // TODO: allow for float/double overload via 'if constexpr' conditional compilation
+    uniform_int_distribution<T> distribution(min, max);   // TODO: allow for float/double overload via 'if constexpr' conditional compilation
 
     /*
     FEW_UNIQUE Implementation:
@@ -172,7 +172,7 @@ void Dataset<T, size, distribution>::genUniqueData(T max, T min)
     //Populate the sample list with a few random values
     for(i; i < amount; i++)
     {
-        array[i] = dist(RNG);
+        array[i] = distribution(RNG);
     }
 
     //Use the random sample to propagate the rest of the data
@@ -187,26 +187,26 @@ void Dataset<T, size, distribution>::genUniqueData(T max, T min)
 // ********** PUBLIC METHODS **********
 
 //Generate a new dataset
-template <typename T, size_t size, Distribution distribution>
-void Dataset<T, size, distribution>::genNewData(T max, T min)
+template <typename T, size_t size, Distribution distT>
+void Dataset<T, size, distT>::genNewData(T max, T min)
 {
-    if (distribution == FEW_UNIQUE)
+    if (distT == FEW_UNIQUE)
         genUniqueData(max, min);
     else
-        genRandomData(max, min);
+        genRandomData(max, min);  //sorting is automatically taken care of
 
 }
 
 //Return a pointer to the array (not really necessary because of implicit T* conversion)
-template <typename T, size_t size, Distribution distribution>
-T* Dataset<T, size, distribution>::get()
+template <typename T, size_t size, Distribution distT>
+T* Dataset<T, size, distT>::get()
 {
     return array;
 }
 
 //Print
-template <typename T, size_t size, Distribution distribution>
-void Dataset<T, size, distribution>::print() const
+template <typename T, size_t size, Distribution distT>
+void Dataset<T, size, distT>::print() const
 {
     //Print float-point numbers with 2 points after the decimal
     cout << fixed << setprecision(2);
@@ -223,33 +223,35 @@ void Dataset<T, size, distribution>::print() const
 // ********** ITERATORS ********** 
 
 //Begin iterator
-template <typename T, size_t size, Distribution distribution>
-auto Dataset<T, size, distribution>::begin() const
+template <typename T, size_t size, Distribution distT>
+T* Dataset<T, size, distT>::begin() const
 {
-    return begin(array);
+    //Return the address of the first element in the array
+    return &array[0];
 }
 
 
 //End iterator
-template <typename T, size_t size, Distribution distribution>
-auto Dataset<T, size, distribution>::end() const
-{
-    return end(array);
+template <typename T, size_t size, Distribution distT>
+T* Dataset<T, size, distT>::end() const
+{                            
+    //Return the address of the last element in the array          
+    return &array[0] + length;
 }
 
 // ********** OPERATOR OVERLOADING **********
 
 //T* Conversion Overload (returns a pointer to the internal array of type T)
-template <typename T, size_t size, Distribution distribution>
-Dataset<T, size, distribution>::operator T*() const
+template <typename T, size_t size, Distribution distT>
+Dataset<T, size, distT>::operator T*() const
 {
     //The name of the array is a pointer to the first element
     return array;
 }
 
 //[] Overload
-template <typename T, size_t size, Distribution distribution>
-T& Dataset<T, size, distribution>::operator[](size_t index)
+template <typename T, size_t size, Distribution distT>
+T& Dataset<T, size, distT>::operator[](size_t index)
 {
     return array[index];
 }

@@ -1,41 +1,49 @@
 #pragma once
 
 #include <iostream>
-
 using namespace std;
 
-//
-void partition(index low, index high, index& pivotpoint)
+//Declare a pivot point -- put all smaller values before it and all larger values after it
+template <typename T>
+void partition(T array[], const size_t low, const size_t high, size_t& pivotpoint)
 {
-    index i, j;
-    keytype pivotitem;
+    //Pivotitem = given element, j = given index
+    T pivotitem = array[low];
+    size_t j = low;
 
-    pivotitem = S[low];
-    j = low;
-
-    for (i = low + 1; i <= high; i++)
+    //Iterate over all the following elements
+    for(size_t i=low+1; i <= high; i++)
     {
-        if (S[i] < pivotitem)
+        //If the current element is less than the pivotitem
+        if (array[i] < pivotitem)
         {
+            //Increment j and swap the elements
             j++;
-            swap(S[i], S[j]);
+            Swap<T>(array[i], array[j]);
         }
     }
 
+    //Move pivotitem to pivotpoint
     pivotpoint = j;
-    swap(S[low], S[pivotpoint]);
+    Swap(array[low], array[pivotpoint]);
 }
 
 
 //Quicksort
-void quicksort(index low, index high)
+template <typename T>
+void quickSort(T array[], const size_t low, const size_t high)
 {
-    index pivotpoint;
+    size_t pivotpoint;
 
-    if (high > low)
+    if (low < high)  //Stop sorting
     {
-        partition(low, high, pivotpoint);
-        quicksort(low, pivotpoint - 1);
-        quicksort(pivotpoint + 1, high);
+        //Sort the array into left and right halves
+        partition<T>(array, low, high, pivotpoint);   //pivotpoint passed by reference!
+
+        //Sort the left half
+        quickSort<T>(array, low, pivotpoint-1);
+
+        //Sort the right half
+        quickSort<T>(array, pivotpoint+1, high);
     }
 }
