@@ -148,7 +148,7 @@ void Dataset<T, size, distT>::genRandomData(T max, T min)
     if (distT == NEARLY_SORTED)
     {
         //Mess up the order :D! (just a bit)
-        uniform_int_distribution<T> elem(0, size-1);   //~10% of the array will be unsorted
+        uniform_int_distribution<T> elem(2, size-1);   //~10% of the array will be unsorted
         size_t amount = elem(RNG) % 10;               //Select a random amount of elements (0-10)
 
         for(size_t i=0; i < amount; i++)
