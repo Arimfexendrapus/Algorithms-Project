@@ -31,7 +31,7 @@ using namespace std;
 
 
 //Different types of distribution
-enum Distribution { RANDOM, SORTED, REVERSE_SORTED, FEW_UNIQUE };
+enum Distribution { RANDOM, SORTED, REVERSE_SORTED, FEW_UNIQUE, NEARLY_SORTED };
 
 
 //Dataset class contains a smart pointer to an array of random numeric values
@@ -131,7 +131,7 @@ void Dataset<T, size, distT>::genRandomData(T max, T min)
     }
 
     //Sort?
-    if (distT == SORTED)
+    if (distT == SORTED or distT == NEARLY_SORTED)
     {
         //Sort in non-decreasing order (0 -> 1000, with repeats)
         sort(array, array + length, [](size_t i, size_t j) {return i < j;});  //lambda expression
@@ -142,6 +142,20 @@ void Dataset<T, size, distT>::genRandomData(T max, T min)
     {
         //Sort in non-increasing order (1000 -> 0, with repeats)
         sort(array, array + length, [](size_t i, size_t j) {return i > j;});  //lambda expression
+    }
+
+    //Nearly sorted? 
+    if (distT == NEARLY_SORTED)
+    {
+        //Mess up the order :D! (just a bit)
+        uniform_int_distribution<T> elem(0, size-1);   //~10% of the array will be unsorted
+        size_t amount = elem(RNG) % 10;               //Select a random amount of elements (0-10)
+
+        for(size_t i=0; i < amount; i++)
+        {
+           //Swap two random elements
+           swap(array[elem(RNG)], array[elem(RNG)]);
+        }
     }
 }
 
