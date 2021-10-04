@@ -8,9 +8,8 @@
   'Dataset<int,20> array' is an array of 20 random integers, distributed RANDOM
   'Dataset<int,20,SORTED> array' is an array of 20 random, sorted integers, distributed RANDOMly
   'Dataset<int,20,REVERSE_SORTED> array' is an array of 20 random, sorted integers, distributed RANDOMly
+  'Dataset<int,20,NEARLY_SORTED> array' is an array of 20, nearly-sorted integers
   'Dataset<int,20,FEW_UNIQUE> array' is an array of 20, few-unique integers
-
-  WARNINGS: do not use floating-point numbers. It have not been implemented.
 */
 
 //Header guard
@@ -96,7 +95,7 @@ Dataset<T, size, distT>::Dataset(T max, T min): length(size)   //Initializer lis
         cerr << e.what() << '\n';
     }
 
-    //Generate new data (random, sorted, reverse-sorted, or few-unique)
+    //Generate new data (random, sorted, reverse-sorted, nearly-sorted, or few-unique)
     genNewData(max, min);
 }
 
@@ -181,7 +180,7 @@ void Dataset<T, size, distT>::genUniqueData(T max, T min)
     uniform_int_distribution<T> selectionDist(0,11);  //Which array element to draw from
 
     //Random amount of integers (6-12)
-    size_t amount = sampleDist(RNG), i = 0;  //sampleDist(RNG);
+    size_t amount = sampleDist(RNG), i = 0;  //the iterator 'i' delcare outside so it can span both loops
 
     //Populate the sample list with a few random values
     for(i; i < amount; i++)
@@ -207,7 +206,7 @@ void Dataset<T, size, distT>::genNewData(T max, T min)
     if (distT == FEW_UNIQUE)
         genUniqueData(max, min);
     else
-        genRandomData(max, min);  //sorting is automatically taken care of
+        genRandomData(max, min);  //sorting is automatically taken care of here
 
 }
 

@@ -7,12 +7,9 @@ Description : Algorithms Project
 Target grade : A
 */
 
-
-
-
 #include <iostream>
 #include <chrono>
-#include <algorithm>     //the cardinal sin
+#include <algorithm>     //the cardinal sin in an algorithms class (sorry lol)
 
 #include "BubbleSort.cpp"
 #include "ExchangeSort.cpp"
@@ -28,24 +25,24 @@ Target grade : A
 using namespace std;
 using fpseconds = chrono::duration<double, ratio<1,1>>;   //Floating-point seconds
 
-/*
-    The amount of elements in an array that has not decayed into a pointer can be deduced 
-    by dividing the size of the array (in bytes) by the size of the first element (in bytes).
-*/
-#define SIZE(array) sizeof(array) / sizeof(array[0])
-
-//Simple average function
-long double average(double array[], const size_t size)
+//Simple averaging function
+long double avg(double total, const size_t size)
 {
-    long double sum = 0;
-
-    for(size_t i=0; i < size; i++)
-    {
-        sum += array[i];
-    }
-    
-    return sum / size;
+    return total / size;
 }
+
+//Struct for saving algorithm results
+struct AlgoResults
+{
+    //Total time taken for each algorithm (over all {const int times} times)
+    double random       = 0;
+    double sorted       = 0;
+    double reversed     = 0;
+    double fewUnique    = 0;
+    double nearlySorted = 0;
+};
+
+
 
 // DRIVER CODE //
 int main()
@@ -53,7 +50,6 @@ int main()
     //Delcarations 
     Dataset<int,1000> array;         //A class wrapper around an array - added some convenience methods as well     
     const int times = 1000;         //The amount of times to test each algorithm
-    double times1[times]; 
 
     //Timepoints for measuring times (elapsed time = end - start)
     chrono::high_resolution_clock::time_point start;
@@ -63,6 +59,8 @@ int main()
     cout << fixed; 
 
     // BUBBLE SORT //
+    AlgoResults bubbleRes;
+
     for (int i = 0; i < times; i++)
     {
         start = chrono::high_resolution_clock::now();  //Start time
@@ -71,16 +69,16 @@ int main()
 
         end = chrono::high_resolution_clock::now();  //End time
 
-        times1[i] = chrono::duration_cast<fpseconds>(end - start).count();
+        bubbleRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
         array.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length << " elements using bubble sort is: " << average(times1, times) << "s over " << times << " intervals" << endl;
+    cout << "The average time to sort an array of " << array.length << " elements using bubble sort is: " << avg(bubbleRes.random, times) << "s over " << times << " intervals" << endl;
 
     // EXCHANGE SORT //
     array.genNewData();
-    double times2[times];
+    AlgoResults exchangeRes;
 
     for (int i = 0; i < times; i++)
     {
@@ -90,17 +88,17 @@ int main()
 
         end = chrono::high_resolution_clock::now();  //End time
 
-        times2[i] = chrono::duration_cast<fpseconds>(end - start).count();
+        exchangeRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
         array.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length << " elements using exchange sort is: " << average(times2, times) << "s over " << times << " intervals" << endl;
+    cout << "The average time to sort an array of " << array.length << " elements using exchange sort is: " << avg(exchangeRes.random, times) << "s over " << times << " intervals" << endl;
 
 
     // HEAP SORT //
     array.genNewData();
-    double times3[times];
+    AlgoResults heapRes;
 
     for (int i = 0; i < times; i++)
     {
@@ -110,18 +108,18 @@ int main()
 
         end = chrono::high_resolution_clock::now();  //End time
 
-        times3[i] = chrono::duration_cast<fpseconds>(end - start).count();
+        heapRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
         array.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length  << " elements using heap sort is: " << average(times3, times) << "s over " << times << " intervals" << endl;
+    cout << "The average time to sort an array of " << array.length  << " elements using heap sort is: " << avg(heapRes.random, times) << "s over " << times << " intervals" << endl;
 
 
 
     // INSERTION SORT //
     array.genNewData();
-    double times4[times];
+    AlgoResults insertionRes;
 
     for (int i = 0; i < array.length; i++)
     {
@@ -131,11 +129,13 @@ int main()
 
         end = chrono::high_resolution_clock::now();  //End time
 
-        times4[i] = chrono::duration_cast<fpseconds>(end - start).count();
+        insertionRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
         array.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length << " elements using insertion sort is: " << average(times4, times) << "s over " << times << " intervals" << endl;
+    cout << "The average time to sort an array of " << array.length << " elements using insertion sort is: " << avg(insertionRes.random, times) << "s over " << times << " intervals" << endl;
 
-}                                                               
+    return 0;
+}          
+
