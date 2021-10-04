@@ -22,7 +22,6 @@
 #include <random>         //Random number generators
 #include <algorithm>     //Sorting functions
 #include <type_traits>  //Type-info for type-guarding
-#include <iterator>    //Contains begin() and end()
 #include <new>        //Contains std::bad_alloc
 
 //Native C Libraries
@@ -66,12 +65,12 @@ class Dataset
         T* get();                          //Return a pointer to the internal array
 
         //Iterators
-        T* begin() const;
-        T* end() const;
+        T* begin() const;              //Beginning of the array
+        T* end() const;               //End of the array
 
         //Operator overloads
         operator T*() const;       //Implicit conversion to pointer (for passing to T[])
-        T& operator[](size_t);    //[] Overload for accessing class like 'arr[5] =...'
+        T& operator[](size_t);    //[] Overload for accessing class like 'arr[5] = ...'
 };
 
 /*
@@ -148,13 +147,14 @@ void Dataset<T, size, distT>::genRandomData(T max, T min)
     if (distT == NEARLY_SORTED)
     {
         //Mess up the order :D! (just a bit)
-        uniform_int_distribution<T> elem(2, size-1);   //~10% of the array will be unsorted
-        size_t amount = elem(RNG) % 10;               //Select a random amount of elements (0-10)
+        uniform_int_distribution<T> elem(0, size-1);              //Random element generator 
+        int element = static_cast<int>((elem(RNG)+1) * 0.05);    //Have to abstract the 'element' out instead of using the Elvis operator for non-GCC compatability :(
+        int amount = element > 0 ? element : 2;                 //Select a random amount of elements to swap (up to 10%)
 
         for(size_t i=0; i < amount; i++)
         {
            //Swap two random elements
-           swap(array[elem(RNG)], array[elem(RNG)]);
+           swap(array[elem(RNG)], array[elem(RNG)]);  //Swapping elements displaces TWO elements per call, effectively doubling the dissort rate
         }
     }
 }
@@ -190,7 +190,7 @@ void Dataset<T, size, distT>::genUniqueData(T max, T min)
     }
 
     //Use the random sample to propagate the rest of the data
-    for(i; i < size; i++)
+    for(i; i < size; i++)  
     {
         //Generate a random value from the sample set
         array[i] = array[selectionDist(RNG) % amount];

@@ -26,7 +26,7 @@ Target grade : A
 #include "ReverseExchangeSort.cpp"
 
 using namespace std;
-using fpseconds = chrono::duration<double, ratio<1, 1>>;   //Floating-point seconds
+using fpseconds = chrono::duration<double, ratio<1,1>>;   //Floating-point seconds
 
 /*
     The amount of elements in an array that has not decayed into a pointer can be deduced 
