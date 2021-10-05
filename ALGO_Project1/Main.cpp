@@ -82,13 +82,14 @@ int main()
 
     for (int i = 0; i < times; i++)
     {
-        start = chrono::high_resolution_clock::now();  //Start time
-
-        bubbleSort<int>(randomArr, randomArr.length);
-
-        end = chrono::high_resolution_clock::now();  //End time
+        //Random data
+        start = chrono::high_resolution_clock::now();    //Start time
+        bubbleSort<int>(randomArr, randomArr.length);   //
+        end = chrono::high_resolution_clock::now();    //End time
 
         bubbleRes.random += chrono::duration_cast<fpseconds>(end - start).count();
+
+
 
         randomArr.genNewData();
     }
