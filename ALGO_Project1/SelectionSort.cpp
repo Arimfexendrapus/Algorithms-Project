@@ -1,8 +1,7 @@
 #pragma once
 
-#include <iostream>
-
-using namespace std;
+//Swap function
+#include "Swap.cpp"
 
 
 //Selection sort

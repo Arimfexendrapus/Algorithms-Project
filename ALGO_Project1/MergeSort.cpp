@@ -1,9 +1,5 @@
 #pragma once
 
-#include <iostream>
-
-using namespace std;
-
 
 //Merge
 template <typename T>

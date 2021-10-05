@@ -1,10 +1,9 @@
 #pragma once
 
+//Swap function
+#include "Swap.cpp"
 
 // C++ program for implementation of Heap Sort
-#include <iostream>
-
-using namespace std;
 
 // To heapify a subtree rooted with node i which is
 // an index in arr[]. n is size of heap
@@ -25,7 +24,7 @@ void heapify(T arr[], int n, int i)
 
 	// If largest is not root
 	if (largest != i) {
-		swap(arr[i], arr[largest]);
+		Swap<T>(arr[i], arr[largest]);
 
 		// Recursively heapify the affected sub-tree
 		heapify(arr, n, largest);
@@ -43,7 +42,7 @@ void heapSort(T arr[], int n)
 	// One by one extract an element from heap
 	for (int i = n - 1; i > 0; i--) {
 		// Move current root to end
-		swap(arr[0], arr[i]);
+		Swap<T>(arr[0], arr[i]);
 
 		// call max heapify on the reduced heap
 		heapify(arr, i, 0);

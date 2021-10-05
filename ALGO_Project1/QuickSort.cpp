@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
-using namespace std;
+//Swap function
+#include "Swap.cpp"
 
 //Declare a pivot point -- put all smaller values before it and all larger values after it
 template <typename T>

@@ -1,9 +1,7 @@
 #pragma once
 
-#include <iostream>
+//Swap function
 #include "Swap.cpp"
-
-using namespace std;
 
 //Bubble sort
 template <typename T>

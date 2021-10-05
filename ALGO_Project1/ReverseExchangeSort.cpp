@@ -1,10 +1,7 @@
 #pragma once
 
-#include <iostream>
+//Swap function
 #include "Swap.cpp"
-
-using namespace std;
-
 
 //Exchange sort
 template <typename T>

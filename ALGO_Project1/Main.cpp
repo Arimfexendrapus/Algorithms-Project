@@ -5,18 +5,23 @@ Class : Algorithms
 
 Description : Algorithms Project
 Target grade : A
+
+Compilation Instructions: g++ Main.cpp
 */
 
+//Native C++ Libraries
 #include <iostream>
+#include <iomanip>
 #include <chrono>
 #include <algorithm>     //the cardinal sin in an algorithms class (sorry lol)
 
-#include "BubbleSort.cpp"
+//Algorithm Implementations
 #include "ExchangeSort.cpp"
+#include "SelectionSort.cpp"
+#include "BubbleSort.cpp"
 #include "InsertionSort.cpp"
 #include "MergeSort.cpp"
 #include "QuickSort.cpp"
-#include "SelectionSort.cpp"
 #include "Swap.cpp"
 #include "Dataset.hpp"
 #include "HeapSort.cpp"
@@ -24,12 +29,6 @@ Target grade : A
 
 using namespace std;
 using fpseconds = chrono::duration<double, ratio<1,1>>;   //Floating-point seconds
-
-//Simple averaging function
-long double avg(double total, const size_t size)
-{
-    return total / size;
-}
 
 //Struct for saving algorithm results
 struct AlgoResults
@@ -42,14 +41,32 @@ struct AlgoResults
     double nearlySorted = 0;
 };
 
+//Averaging function -- sets the results of each algorithm to the average time by dividing by the amount of times
+void avg(AlgoResults& totals, const size_t size)
+{
+    totals.random        /= size;
+    /*
+    totals.sorted        /= size;
+    totals.reversed      /= size;
+    totals.fewUnique     /= size;
+    totals.nearlySorted  /= size;
+    */
+}
+
 
 
 // DRIVER CODE //
 int main()
 {
-    //Delcarations 
-    Dataset<int,1000> array;         //A class wrapper around an array - added some convenience methods as well     
-    const int times = 1000;         //The amount of times to test each algorithm
+    //Constants
+    const unsigned int arrLength = 1000;       //The amount of elements in each array
+    const unsigned int times  = 1000;         //The amount of times to test each algorithm
+
+    //Datasets
+    Dataset<int, arrLength, RANDOM>         randomArr;             //An array of {arrLength} elements, randomly distributed    
+    Dataset<int, arrLength, REVERSE_SORTED> reverSortedArr;       //An array of {arrLength} elements, sorted in reverse order (ex. 1000 -> 0, with repeats)
+    Dataset<int, arrLength, NEARLY_SORTED>  nearlySortedArr;     //An array of {arrLength} elements, almost sorted (~10% unsorted)
+    Dataset<int, arrLength, FEW_UNIQUE>     fewUniqueArr;       //An array of {arrLength} elements, composed of a few unique values (somewhere between 6-12)
 
     //Timepoints for measuring times (elapsed time = end - start)
     chrono::high_resolution_clock::time_point start;
@@ -58,6 +75,8 @@ int main()
     //Prevents number being represented in scientific notation
     cout << fixed; 
 
+
+
     // BUBBLE SORT //
     AlgoResults bubbleRes;
 
@@ -65,76 +84,92 @@ int main()
     {
         start = chrono::high_resolution_clock::now();  //Start time
 
-        bubbleSort<int>(array, array.length);
+        bubbleSort<int>(randomArr, randomArr.length);
 
         end = chrono::high_resolution_clock::now();  //End time
 
         bubbleRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
-        array.genNewData();
+        randomArr.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length << " elements using bubble sort is: " << avg(bubbleRes.random, times) << "s over " << times << " intervals" << endl;
 
     // EXCHANGE SORT //
-    array.genNewData();
     AlgoResults exchangeRes;
 
     for (int i = 0; i < times; i++)
     {
         start = chrono::high_resolution_clock::now();  //Start time
 
-        exchangeSort<int>(array, array.length);
+        exchangeSort<int>(randomArr, randomArr.length);
 
         end = chrono::high_resolution_clock::now();  //End time
 
         exchangeRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
-        array.genNewData();
+        randomArr.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length << " elements using exchange sort is: " << avg(exchangeRes.random, times) << "s over " << times << " intervals" << endl;
 
 
     // HEAP SORT //
-    array.genNewData();
     AlgoResults heapRes;
 
     for (int i = 0; i < times; i++)
     {
         start = chrono::high_resolution_clock::now();  //Start time
 
-        heapSort<int>(array, array.length);
+        heapSort<int>(randomArr, randomArr.length);
 
         end = chrono::high_resolution_clock::now();  //End time
 
         heapRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
-        array.genNewData();
+        randomArr.genNewData();
     }
-
-    cout << "The average time to sort an array of " << array.length  << " elements using heap sort is: " << avg(heapRes.random, times) << "s over " << times << " intervals" << endl;
-
 
 
     // INSERTION SORT //
-    array.genNewData();
     AlgoResults insertionRes;
 
-    for (int i = 0; i < array.length; i++)
+    for (int i = 0; i < times; i++)
     {
         start = chrono::high_resolution_clock::now();  //Start time
 
-        insertionSort<int>(array, array.length);
+        insertionSort<int>(randomArr, randomArr.length);
 
         end = chrono::high_resolution_clock::now();  //End time
 
         insertionRes.random += chrono::duration_cast<fpseconds>(end - start).count();
 
-        array.genNewData();
+        randomArr.genNewData();
     }
 
-    cout << "The average time to sort an array of " << array.length << " elements using insertion sort is: " << avg(insertionRes.random, times) << "s over " << times << " intervals" << endl;
+
+
+    // CALCULATIONS //
+    avg(exchangeRes, times);
+    avg(bubbleRes, times);
+    avg(insertionRes, times);
+    avg(heapRes, times);
+
+
+
+    // RESULTS //
+    const unsigned int w = 20;  //w(idth)
+
+    //Headers
+    cout << "Length of Arrays: " << arrLength << '\n';
+    cout << "Number of Trials: " << times << "\n\n";
+
+    cout << "Average Times:" << setw(w) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "==============\n";
+
+    //Average times of each algorithm for each dataset
+    cout << "Exchange Sort: "  << setw(20) << exchangeRes.random  << '\n';
+    cout << "Bubble Sort: "    << setw(20) << bubbleRes.random    << '\n';
+    cout << "Insertion Sort: " << setw(20) << insertionRes.random << '\n';
+    cout << "Heap Sort: "      << setw(20) << heapRes.random      << '\n';
 
     return 0;
 }          

@@ -1,9 +1,5 @@
 #pragma once
 
-#include <iostream>
-
-using namespace std;
-
 //Insertion sort
 template <typename T>
 void insertionSort(T array[], const size_t size)
