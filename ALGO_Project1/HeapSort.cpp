@@ -23,13 +23,15 @@ void heapify(T arr[], int n, int i,double& compares)
 	if (r < n && arr[r] > arr[largest])
 		largest = r;
 
+	compares += 2;
+
 	// If largest is not root
 	if (largest != i) {
 		Swap<T>(arr[i], arr[largest]);
 		// Recursively heapify the affected sub-tree
 		heapify(arr, n, largest, compares);
 	}
-	compares += 2;
+	
 }
 
 // main function to do heap sort
