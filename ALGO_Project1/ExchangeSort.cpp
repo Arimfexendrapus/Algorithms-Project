@@ -6,12 +6,12 @@
 
 //Exchange sort
 template <typename T>
-int exchangeSort(T array[], const size_t size, int& swaps)
+double exchangeSort(T array[], const size_t size, double& swaps)
 {
 
     //compare count
-    int compareCount = 0;
-    swaps = 0;
+    double compareCount = 0;
+
     //For every element in the array
     for (size_t i = 0; i < size-1; i++)
     {

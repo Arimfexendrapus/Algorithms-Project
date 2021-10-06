@@ -2,10 +2,11 @@
 #include <cstddef>
 //Insertion sort
 template <typename T>
-void insertionSort(T array[], const size_t size)
+double insertionSort(T array[], const size_t size)
 {
     T key;
     size_t iter;
+    double compares = 0;
 
     //For every element in the array (beyond the first)
     for (size_t i = 1; i < size; ++i)
@@ -20,10 +21,12 @@ void insertionSort(T array[], const size_t size)
             array[iter + 1] = array[iter];
             --iter;
         }
+        compares += 2;
 
         //Assign the extracted value (the key) to its spot
         array[iter + 1] = key;
     }
+    return compares;
 }
 
 
