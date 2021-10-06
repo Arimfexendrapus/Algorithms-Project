@@ -22,6 +22,7 @@
 #include <algorithm>     //Sorting functions
 #include <type_traits>  //Type-info for type-guarding
 #include <new>        //Contains std::bad_alloc
+#include <cstddef>
 
 //Native C Libraries
 #include <cstddef>     //Contains 'size_t'

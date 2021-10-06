@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cstddef>
 //Insertion sort
 template <typename T>
 void insertionSort(T array[], const size_t size)

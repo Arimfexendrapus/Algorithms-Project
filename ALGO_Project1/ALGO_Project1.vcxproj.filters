@@ -18,51 +18,39 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Swap.hpp">
+    <ClCompile Include="BubbleSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Selection_Sort.hpp">
+    </ClCompile>
+    <ClCompile Include="ExchangeSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Exchange_Sort.hpp">
+    </ClCompile>
+    <ClCompile Include="HeapSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Merge_Sort.hpp">
+    </ClCompile>
+    <ClCompile Include="InsertionSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quick_Sort.hpp">
+    </ClCompile>
+    <ClCompile Include="MergeSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bubble_Sort.hpp">
+    </ClCompile>
+    <ClCompile Include="QuickSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Insertion_Sort.hpp">
+    </ClCompile>
+    <ClCompile Include="SelectionSort.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dataset.hpp">
+    </ClCompile>
+    <ClCompile Include="Swap.cpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Heap_Sort.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Random_Array.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Many_Duplicates_Array.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Reverse_Array.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Reverse_Exchange_Sort.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\the google doc link">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dataset.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
