@@ -11,50 +11,24 @@ void bubbleSort(T array[], const size_t size)
 {
 
     bool notSorted = true;
-    int i, j, temp;
     while (notSorted)
     {
-        for (i = 0; i < size; i++)
+        //For each element in array
+        for (int i = 0; i < size; i++)
         {
+            //Set not sorted to false
             notSorted = false;
-            for (j = 0; j < size - i - 1; j++)
+            //Loop over each element in the array from the beginning
+            for (int j = 0; j < size - i - 1; j++)
             {
+                //Checks if sorted AND swaps if not
                 if (array[j] > array[j + 1])
                 {
                     notSorted = true;
-                    temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
+                    Swap<T>(array[j], array[j + 1]);
                 }
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-    /*
-    //For each element in the array
-    for (size_t i = 0; i < size-1; ++i)
-    {
-        notSorted = false;
-        //Loop over each element in the array (starting at the beginning!)
-        for (size_t j = 0; j < size; ++j)
-        {
-
-            //If you following element is smaller than the current, swap them
-            if (array[j] > array[j + 1])
-            {
-                Swap<T>(array[j], array[j + 1]);
-            }
-        }
-    }
-    */
 }
 
