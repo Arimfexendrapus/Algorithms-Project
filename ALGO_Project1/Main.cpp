@@ -220,7 +220,7 @@ int main()
         fewUniqueArr.genNewData();
     }
            
-    /*
+    
     // MERGE SORT //
     AlgoResults mergeRes;
 
@@ -257,7 +257,7 @@ int main()
         fewUniqueArr.genNewData();
     }
 
-    */
+    
     // QUICK SORT //
     AlgoResults quickRes;
 
@@ -341,7 +341,7 @@ int main()
     avg(exchangeRes, times);
     avg(bubbleRes, times);
     avg(insertionRes, times);
-    //avg(mergeRes, times);
+    avg(mergeRes, times);
     avg(quickRes, times);
     avg(heapRes, times);
 
@@ -363,7 +363,7 @@ int main()
     cout << "Exchange Sort: "   << setw(15) << exchangeRes.random  << setw(15) << exchangeRes.reverse  << setw(20) << exchangeRes.nearly  << setw(20) << exchangeRes.fewUnique << '\n';
     cout << "Bubble Sort: "     << setw(17) << bubbleRes.random    << setw(15) << bubbleRes.reverse    << setw(20) << bubbleRes.nearly    << setw(20) << bubbleRes.fewUnique << '\n';
     cout << "Insertion Sort: "  << setw(14) << insertionRes.random << setw(15) << insertionRes.reverse << setw(20) << insertionRes.nearly << setw(20) << insertionRes.fewUnique << '\n';
-    //cout << "Merge Sort: "      << setw(20) << mergeRes.random     << setw(20) << mergeRes.reverse     << setw(20) << mergeRes.nearly     << setw(20) << mergeRes.fewUnique << '\n';
+    cout << "Merge Sort: "      << setw(20) << mergeRes.random     << setw(20) << mergeRes.reverse     << setw(20) << mergeRes.nearly     << setw(20) << mergeRes.fewUnique << '\n';
     cout << "Quick Sort: "      << setw(18) << quickRes.random     << setw(15) << quickRes.reverse     << setw(20) << quickRes.nearly     << setw(20) << quickRes.fewUnique << '\n';
     cout << "Heap Sort: "       << setw(19) << heapRes.random      << setw(15) << heapRes.reverse      << setw(20) << heapRes.nearly      << setw(20) << heapRes.fewUnique << '\n';
     
