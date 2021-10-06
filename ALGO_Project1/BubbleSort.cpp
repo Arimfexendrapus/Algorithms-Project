@@ -11,10 +11,9 @@ double bubbleSort(T array[], const size_t size)
 {
     double compares = 0;
     bool notSorted = true;
-    while (notSorted)
-    {
+    
         //For each element in array
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size && notSorted; i++)
         {
             //Set not sorted to false
             notSorted = false;
@@ -31,6 +30,6 @@ double bubbleSort(T array[], const size_t size)
             }
         }
         return compares;
-    }
+    
 }
 
