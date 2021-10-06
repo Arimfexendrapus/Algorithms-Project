@@ -9,7 +9,7 @@
 // To heapify a subtree rooted with node i which is
 // an index in arr[]. n is size of heap
 template <typename T>
-void heapify(T arr[], int n, int i)
+void heapify(T arr[], int n, int i,double& compares)
 {
 	int largest = i; // Initialize largest as root
 	int l = 2 * i + 1; // left = 2*i + 1
@@ -26,19 +26,19 @@ void heapify(T arr[], int n, int i)
 	// If largest is not root
 	if (largest != i) {
 		Swap<T>(arr[i], arr[largest]);
-
 		// Recursively heapify the affected sub-tree
-		heapify(arr, n, largest);
+		heapify(arr, n, largest, compares);
 	}
+	compares += 2;
 }
 
 // main function to do heap sort
 template <typename T>
-void heapSort(T arr[], int n)
+void heapSort(T arr[], int n, double& compares)
 {
 	// Build heap (rearrange array)
 	for (int i = n / 2 - 1; i >= 0; i--)
-		heapify(arr, n, i);
+		heapify(arr, n, i, compares);
 
 	// One by one extract an element from heap
 	for (int i = n - 1; i > 0; i--) {
@@ -46,6 +46,6 @@ void heapSort(T arr[], int n)
 		Swap<T>(arr[0], arr[i]);
 
 		// call max heapify on the reduced heap
-		heapify(arr, i, 0);
+		heapify(arr, i, 0, compares);
 	}
 }

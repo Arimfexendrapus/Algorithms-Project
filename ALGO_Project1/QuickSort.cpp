@@ -5,7 +5,7 @@
 
 //Declare a pivot point -- put all smaller values before it and all larger values after it
 template <typename T>
-void partition(T array[], const int low, const int high, int& pivotpoint)
+void partition(T array[], const int low, const int high, int& pivotpoint, double& compares)
 {
     //Pivotitem = given element, j = given index
     T pivotitem = array[low];
@@ -21,7 +21,7 @@ void partition(T array[], const int low, const int high, int& pivotpoint)
             j++;
             Swap<T>(array[i], array[j]);
         }
-        //compares++;
+        compares++;
     }
 
     //Move pivotitem to pivotpoint
@@ -32,19 +32,19 @@ void partition(T array[], const int low, const int high, int& pivotpoint)
 
 //Quicksort
 template <typename T>
-void quickSort(T array[], const int low, const int high)
+void quickSort(T array[], const int low, const int high,double& compares)
 {
     int pivotpoint;
 
     if (low < high)  //Stop sorting
     {
         //Sort the array into left and right halves
-        partition<T>(array, low, high, pivotpoint);   //pivotpoint passed by reference!
+        partition<T>(array, low, high, pivotpoint, compares);   //pivotpoint passed by reference!
 
         //Sort the left half
-        quickSort<T>(array, low, pivotpoint-1);
+        quickSort<T>(array, low, pivotpoint-1, compares);
 
         //Sort the right half
-        quickSort<T>(array, pivotpoint+1, high);
+        quickSort<T>(array, pivotpoint+1, high, compares);
     }
 }
