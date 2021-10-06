@@ -6,10 +6,9 @@
 
 //Selection sort
 template <typename T>
-int selectionSort(T array[], const size_t size, int& swaps)
+double selectionSort(T array[], const size_t size, double& swaps)
 {
-    int compares = 0;
-    swaps = 0;
+    double compares = 0;
     //To keep track of the smallest number in the array
     size_t min;
 

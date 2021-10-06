@@ -6,8 +6,9 @@
 
 //Bubble sort
 template <typename T>
-void bubbleSort(T array[], const size_t size)
+double bubbleSort(T array[], const size_t size)
 {
+    double compares = 0;
     //For each element in the array
     for (size_t i = 0; i < size-1; ++i)
     {
@@ -16,8 +17,13 @@ void bubbleSort(T array[], const size_t size)
         {
             //If you following element is smaller than the current, swap them
             if (array[j] > array[j + 1])
+            {
                 Swap<T>(array[j], array[j + 1]);
+            }
+            compares++;
+                
         }
     }
+    return compares;
 }
 
