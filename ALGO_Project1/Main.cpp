@@ -74,38 +74,38 @@ int main()
     chrono::high_resolution_clock::time_point end;
 
     //Prevents number being represented in scientific notation
-    cout << fixed << setprecision(8);   //Use 8 decimal places
+    cout << fixed << setprecision(8)<<right;   //Use 8 decimal places
 
 
 
     // SELECTION SORT //
     AlgoResults selectionRes;
-    AlgoResults selectionSwapCounts;
+    AlgoResults selectionSwaps;
     AlgoResults selectionCompares;
                                                                                     
     for (int i=0; i < times; i++)
     {
         //Random
         start = chrono::high_resolution_clock::now();                                     //Start time
-        selectionCompares.random += selectionSort<int>(randomArr, randomArr.length,selectionSwapCounts.random);                                 //Call algorithm
+        selectionCompares.random += selectionSort<int>(randomArr, randomArr.length,selectionSwaps.random);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         selectionRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Reverse sorted
         start = chrono::high_resolution_clock::now();                                      //Start time
-        selectionCompares.reverse += selectionSort<int>(reverseSortedArr, reverseSortedArr.length, selectionSwapCounts.reverse);                    //Call algorithm
+        selectionCompares.reverse += selectionSort<int>(reverseSortedArr, reverseSortedArr.length, selectionSwaps.reverse);                    //Call algorithm
         end = chrono::high_resolution_clock::now();                                      //End time
         selectionRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Nearly sorted
         start = chrono::high_resolution_clock::now();                                     //Start time
-        selectionCompares.nearly += selectionSort<int>(nearlySortedArr, nearlySortedArr.length, selectionSwapCounts.nearly);                     //Call algorithm
+        selectionCompares.nearly += selectionSort<int>(nearlySortedArr, nearlySortedArr.length, selectionSwaps.nearly);                     //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         selectionRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Few unique
         start = chrono::high_resolution_clock::now();                                       //Start time
-        selectionCompares.fewUnique += selectionSort<int>(fewUniqueArr, fewUniqueArr.length, selectionSwapCounts.fewUnique);                             //Call algorithm
+        selectionCompares.fewUnique += selectionSort<int>(fewUniqueArr, fewUniqueArr.length, selectionSwaps.fewUnique);                             //Call algorithm
         end = chrono::high_resolution_clock::now();                                       //End time
         selectionRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();  //Get elapsed time
 
@@ -119,33 +119,33 @@ int main()
 
     // EXCHANGE SORT //
     AlgoResults exchangeRes;
-    AlgoResults exchangeSwapCounts;
+    AlgoResults exchangeSwaps;
     AlgoResults exchangeCompares;
 
     for (int i=0; i < times; i++)
     {
         //Random
         start = chrono::high_resolution_clock::now();                                    //Start time
-        exchangeCompares.random += exchangeSort<int>(randomArr, randomArr.length, exchangeSwapCounts.random);                                 //Call algorithm
+        exchangeCompares.random += exchangeSort<int>(randomArr, randomArr.length, exchangeSwaps.random);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                    //End time
         exchangeRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
 
         //Reverse sorted
         start = chrono::high_resolution_clock::now();                                     //Start time
-        exchangeCompares.reverse += exchangeSort<int>(reverseSortedArr, reverseSortedArr.length, exchangeSwapCounts.reverse);                    //Call algorithm
+        exchangeCompares.reverse += exchangeSort<int>(reverseSortedArr, reverseSortedArr.length, exchangeSwaps.reverse);                    //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         exchangeRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Nearly sorted
         start = chrono::high_resolution_clock::now();                                    //Start time
-        exchangeCompares.nearly += exchangeSort<int>(nearlySortedArr, nearlySortedArr.length, exchangeSwapCounts.nearly);                     //Call algorithm
+        exchangeCompares.nearly += exchangeSort<int>(nearlySortedArr, nearlySortedArr.length, exchangeSwaps.nearly);                     //Call algorithm
         end = chrono::high_resolution_clock::now();                                    //End time
         exchangeRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Few unique
         start = chrono::high_resolution_clock::now();                                      //Start time
-        exchangeCompares.fewUnique += exchangeSort<int>(fewUniqueArr, fewUniqueArr.length, exchangeSwapCounts.fewUnique);                             //Call algorithm
+        exchangeCompares.fewUnique += exchangeSort<int>(fewUniqueArr, fewUniqueArr.length, exchangeSwaps.fewUnique);                             //Call algorithm
         end = chrono::high_resolution_clock::now();                                      //End time
         exchangeRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();  //Get elapsed time
 
@@ -368,29 +368,34 @@ int main()
     avg(quickCompares, times);
     avg(mergeCompares, times);
 
+    // SWAP AVERAGES
+
+    avg(exchangeSwaps, times);
+    avg(selectionSwaps, times);
+
 
     // RESULTS //
-    int w = 19;  //w(idth)
-
+    int w = 20;  //w(idth)
+    int wi = 20;
     //Headers
     cout << "Length of Arrays: " << arrlen << '\n';
     cout << "Number of Trials: " << times << "\n\n";
 
-    cout << "Algorithm sort times:" << setw(w) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "Algorithm sort times:" << setw(18) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
     cout << "==========\n";
 
     //Average times of each algorithm for each dataset
     /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
-    cout << "Selection Sort: "  << setw(25) << selectionRes.random << setw(15) << selectionRes.reverse << setw(20) << selectionRes.nearly << setw(20) << selectionRes.fewUnique << '\n';
-    cout << "Exchange Sort: "   << setw(26) << exchangeRes.random  << setw(15) << exchangeRes.reverse  << setw(20) << exchangeRes.nearly  << setw(20) << exchangeRes.fewUnique  << '\n';
-    cout << "Bubble Sort: "     << setw(28) << bubbleRes.random    << setw(15) << bubbleRes.reverse    << setw(20) << bubbleRes.nearly    << setw(20) << bubbleRes.fewUnique    << '\n';
-    cout << "Insertion Sort: "  << setw(25) << insertionRes.random << setw(15) << insertionRes.reverse << setw(20) << insertionRes.nearly << setw(20) << insertionRes.fewUnique << '\n';
-    cout << "Merge Sort: "      << setw(29) << mergeRes.random     << setw(15) << mergeRes.reverse     << setw(20) << mergeRes.nearly     << setw(20) << mergeRes.fewUnique     << '\n';
-    cout << "Quick Sort: "      << setw(29) << quickRes.random     << setw(15) << quickRes.reverse     << setw(20) << quickRes.nearly     << setw(20) << quickRes.fewUnique     << '\n';
-    cout << "Heap Sort: "       << setw(30) << heapRes.random      << setw(15) << heapRes.reverse      << setw(20) << heapRes.nearly      << setw(20) << heapRes.fewUnique      << '\n';
+    cout << "Selection Sort: "  << setw(22) << selectionRes.random << setw(wi) << selectionRes.reverse << setw(wi) << selectionRes.nearly << setw(wi) << selectionRes.fewUnique << '\n';
+    cout << "Exchange Sort: "   << setw(23) << exchangeRes.random  << setw(wi) << exchangeRes.reverse  << setw(wi) << exchangeRes.nearly  << setw(wi) << exchangeRes.fewUnique  << '\n';
+    cout << "Bubble Sort: "     << setw(25) << bubbleRes.random    << setw(wi) << bubbleRes.reverse    << setw(wi) << bubbleRes.nearly    << setw(wi) << bubbleRes.fewUnique    << '\n';
+    cout << "Insertion Sort: "  << setw(22) << insertionRes.random << setw(wi) << insertionRes.reverse << setw(wi) << insertionRes.nearly << setw(wi) << insertionRes.fewUnique << '\n';
+    cout << "Merge Sort: "      << setw(26) << mergeRes.random     << setw(wi) << mergeRes.reverse     << setw(wi) << mergeRes.nearly     << setw(wi) << mergeRes.fewUnique     << '\n';
+    cout << "Quick Sort: "      << setw(26) << quickRes.random     << setw(wi) << quickRes.reverse     << setw(wi) << quickRes.nearly     << setw(wi) << quickRes.fewUnique     << '\n';
+    cout << "Heap Sort: "       << setw(27) << heapRes.random      << setw(wi) << heapRes.reverse      << setw(wi) << heapRes.nearly      << setw(wi) << heapRes.fewUnique      << '\n';
 
-    //swaps and compares
-    w = 20;
+    // compares
+
     int wid = 20;
     cout << fixed << setprecision(2)<<right;
     cout << "\n\n\nAlgorithm compares:" << setw(w) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
@@ -406,6 +411,17 @@ int main()
     cout << "Quick Sort: "      << setw(26) << quickCompares.random     << setw(wid) << quickCompares.reverse     << setw(wid) << quickCompares.nearly     << setw(wid) << quickCompares.fewUnique     << '\n';
     cout << "Heap Sort: "       << setw(27) << heapCompares.random      << setw(wid) << heapCompares.reverse      << setw(wid) << heapCompares.nearly      << setw(wid) << heapCompares.fewUnique      << '\n';
     
+
+    //swaps 
+    cout << fixed << setprecision(2) << right;
+    cout << "\n\n\nAlgorithm swaps:" << setw(23) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "==========\n";
+
+    //Average times of each algorithm for each dataset
+    /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
+    cout << "Selection Sort: " << setw(22) << selectionSwaps.random << setw(wid) << selectionSwaps.reverse << setw(wid) << selectionSwaps.nearly << setw(wid) << selectionSwaps.fewUnique << '\n';
+    cout << "Exchange Sort: " << setw(23) << exchangeSwaps.random << setw(wid) << exchangeSwaps.reverse << setw(wid) << exchangeSwaps.nearly << setw(wid) << exchangeSwaps.fewUnique << '\n';
+
     return 0;
 }          
 
