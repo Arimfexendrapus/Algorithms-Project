@@ -40,6 +40,26 @@ struct AlgoResults
     double nearly    = 0;
 };
 
+//Struct for saving algorithm compareCounts
+struct AlgoSwapResults
+{
+    //Total counts of compares
+    int random = 0;
+    int reverse = 0;
+    int fewUnique = 0;
+    int nearly = 0;
+};
+
+//Struct for saving algorithm compareCounts
+struct AlgoCompareResults
+{
+    //Total counts of compares
+    int random = 0;
+    int reverse = 0;
+    int fewUnique = 0;
+    int nearly = 0;
+};
+
 //Averaging function -- sets the results of each algorithm to the average time by dividing by the amount of times
 void avg(AlgoResults& totals, const size_t size)
 {
@@ -112,30 +132,32 @@ int main()
 
     // EXCHANGE SORT //
     AlgoResults exchangeRes;
+    AlgoSwapResults swapCounts;
+    AlgoCompareResults compareCounts;
 
     for (int i=0; i < times; i++)
     {
         //Random
         start = chrono::high_resolution_clock::now();                                    //Start time
-        exchangeSort<int>(randomArr, randomArr.length);                                 //Call algorithm
+        compareCounts.random = exchangeSort<int>(randomArr, randomArr.length,swapCounts.random);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                    //End time
         exchangeRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Reverse sorted
         start = chrono::high_resolution_clock::now();                                     //Start time
-        exchangeSort<int>(reverseSortedArr, reverseSortedArr.length);                    //Call algorithm
+        compareCounts.reverse = exchangeSort<int>(reverseSortedArr, reverseSortedArr.length, swapCounts.reverse);                    //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         exchangeRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Nearly sorted
         start = chrono::high_resolution_clock::now();                                    //Start time
-        exchangeSort<int>(nearlySortedArr, nearlySortedArr.length);                     //Call algorithm
+        compareCounts.nearly = exchangeSort<int>(nearlySortedArr, nearlySortedArr.length, swapCounts.nearly);                     //Call algorithm
         end = chrono::high_resolution_clock::now();                                    //End time
         exchangeRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Few unique
         start = chrono::high_resolution_clock::now();                                      //Start time
-        exchangeSort<int>(fewUniqueArr, fewUniqueArr.length);                             //Call algorithm
+        compareCounts.fewUnique = exchangeSort<int>(fewUniqueArr, fewUniqueArr.length, swapCounts.fewUnique);                             //Call algorithm
         end = chrono::high_resolution_clock::now();                                      //End time
         exchangeRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();  //Get elapsed time
 

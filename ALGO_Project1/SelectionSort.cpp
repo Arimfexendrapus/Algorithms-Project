@@ -6,8 +6,10 @@
 
 //Selection sort
 template <typename T>
-void selectionSort(T array[], const size_t size)
+int selectionSort(T array[], const size_t size, int& swaps)
 {
+    int compares = 0;
+    swaps = 0;
     //To keep track of the smallest number in the array
     size_t min;
 
@@ -22,11 +24,16 @@ void selectionSort(T array[], const size_t size)
         {
             //If you come across a smaller number while iterating, set it to the smallest number
             if (array[j] < array[min])
+            {
                 min = j;
+                compares++;
+            }
+
         }
 
         //Swap the current index with the smallest number found
         Swap<T>(array[i], array[min]);
+        swaps++;
     }
 
 }
