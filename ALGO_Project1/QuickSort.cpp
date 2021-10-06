@@ -21,6 +21,7 @@ void partition(T array[], const int low, const int high, int& pivotpoint)
             j++;
             Swap<T>(array[i], array[j]);
         }
+        //compares++;
     }
 
     //Move pivotitem to pivotpoint
