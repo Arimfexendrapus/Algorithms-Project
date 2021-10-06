@@ -1,6 +1,7 @@
 #pragma once
 #include <cstddef>
 
+
 //Merge
 template <typename T>
 void merge(T array[], const size_t l, const size_t m, const size_t r)
@@ -11,8 +12,12 @@ void merge(T array[], const size_t l, const size_t m, const size_t r)
     //Size of left and right sub-arrays
     size_t size_left = m - l + 1, size_right = r - m;
 
+    
     //Declare the two sub arrays
-    T left[size_left], right[size_right];
+    int* left = new int[size_left];
+    int* right = new int[size_right];
+
+    //T left[size_left], right[size_right];
 
     //Copy array[l...mid] into left[l..length]
     for (i = 0; i < size_left; i++)
