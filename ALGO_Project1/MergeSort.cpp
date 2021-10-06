@@ -4,7 +4,7 @@
 
 //Merge
 template <typename T>
-void merge(T array[], const size_t l, const size_t m, const size_t r)
+void merge(T array[], const size_t l, const size_t m, const size_t r, double& compares)
 {
     //Declare three iterators (to span across for loops)
     size_t i, j, k;
@@ -47,6 +47,7 @@ void merge(T array[], const size_t l, const size_t m, const size_t r)
 
         //Proceed to the next element
         k++;
+        compares++;
     }
 
     //Copy elements from the new sorted array into the main array
@@ -67,7 +68,7 @@ void merge(T array[], const size_t l, const size_t m, const size_t r)
 
 //Merge sort
 template <typename T>
-void mergeSort(T array[], const size_t l, const size_t r)
+void mergeSort(T array[], const size_t l, const size_t r, double& compares)
 {
     if (l < r)   // if (size > 1)
     {
@@ -75,10 +76,10 @@ void mergeSort(T array[], const size_t l, const size_t r)
         size_t m = l + (r - l) / 2;
 
         //Sort first and second arrays
-        mergeSort<T>(array, l, m);
-        mergeSort<T>(array, m + 1, r);
+        mergeSort<T>(array, l, m,compares);
+        mergeSort<T>(array, m + 1, r,compares);
 
         //Merge
-        merge<T>(array, l, m, r);
+        merge<T>(array, l, m, r,compares);
     }
 }

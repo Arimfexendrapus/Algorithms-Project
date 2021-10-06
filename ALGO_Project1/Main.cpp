@@ -235,30 +235,31 @@ int main()
     
     // MERGE SORT //
     AlgoResults mergeRes;
+    AlgoResults mergeCompares;
 
     for (int i=0; i < times; i++)
     {
         //Random 
         start = chrono::high_resolution_clock::now();                                 //Start time
-        mergeSort<int>(randomArr, 0, randomArr.length-1);                            //Call algorithm
+        mergeSort<int>(randomArr, 0, randomArr.length-1,mergeCompares.random);                            //Call algorithm
         end = chrono::high_resolution_clock::now();                                 //End time
         mergeRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Reverse sorted
         start = chrono::high_resolution_clock::now();                                  //Start time
-        mergeSort<int>(reverseSortedArr, 0, reverseSortedArr.length-1);               //Call algorithm
+        mergeSort<int>(reverseSortedArr, 0, reverseSortedArr.length-1, mergeCompares.reverse);               //Call algorithm
         end = chrono::high_resolution_clock::now();                                  //End time
         mergeRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Nearly sorted
         start = chrono::high_resolution_clock::now();                                 //Start time
-        mergeSort<int>(nearlySortedArr, 0, nearlySortedArr.length-1);                //Call algorithm
+        mergeSort<int>(nearlySortedArr, 0, nearlySortedArr.length-1, mergeCompares.nearly);                //Call algorithm
         end = chrono::high_resolution_clock::now();                                 //End time
         mergeRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Few unique
         start = chrono::high_resolution_clock::now();                                    //Start time
-        mergeSort<int>(fewUniqueArr, 0, fewUniqueArr.length-1);                         //Call algorithm
+        mergeSort<int>(fewUniqueArr, 0, fewUniqueArr.length-1, mergeCompares.fewUnique);                         //Call algorithm
         end = chrono::high_resolution_clock::now();                                    //End time
         mergeRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
@@ -361,6 +362,7 @@ int main()
     avg(selectionCompares, times);
     avg(exchangeCompares, times);
     avg(insertionCompares, times);
+    avg(mergeCompares, times);
 
 
 
@@ -376,28 +378,28 @@ int main()
 
     //Average times of each algorithm for each dataset
     /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
-    cout << "Selection Sort: "  << setw(14) << selectionRes.random << setw(15) << selectionRes.reverse << setw(20) << selectionRes.nearly << setw(20) << selectionRes.fewUnique << '\n';
-    cout << "Exchange Sort: "   << setw(15) << exchangeRes.random  << setw(15) << exchangeRes.reverse  << setw(20) << exchangeRes.nearly  << setw(20) << exchangeRes.fewUnique << '\n';
-    cout << "Bubble Sort: "     << setw(17) << bubbleRes.random    << setw(15) << bubbleRes.reverse    << setw(20) << bubbleRes.nearly    << setw(20) << bubbleRes.fewUnique << '\n';
-    cout << "Insertion Sort: "  << setw(14) << insertionRes.random << setw(15) << insertionRes.reverse << setw(20) << insertionRes.nearly << setw(20) << insertionRes.fewUnique << '\n';
-    cout << "Merge Sort: "      << setw(18) << mergeRes.random     << setw(15) << mergeRes.reverse     << setw(20) << mergeRes.nearly     << setw(20) << mergeRes.fewUnique << '\n';
-    cout << "Quick Sort: "      << setw(18) << quickRes.random     << setw(15) << quickRes.reverse     << setw(20) << quickRes.nearly     << setw(20) << quickRes.fewUnique << '\n';
-    cout << "Heap Sort: "       << setw(19) << heapRes.random      << setw(15) << heapRes.reverse      << setw(20) << heapRes.nearly      << setw(20) << heapRes.fewUnique << '\n';
+    cout << "Selection Sort: "  << setw(25) << selectionRes.random << setw(15) << selectionRes.reverse << setw(20) << selectionRes.nearly << setw(20) << selectionRes.fewUnique << '\n';
+    cout << "Exchange Sort: "   << setw(26) << exchangeRes.random  << setw(15) << exchangeRes.reverse  << setw(20) << exchangeRes.nearly  << setw(20) << exchangeRes.fewUnique << '\n';
+    cout << "Bubble Sort: "     << setw(28) << bubbleRes.random    << setw(15) << bubbleRes.reverse    << setw(20) << bubbleRes.nearly    << setw(20) << bubbleRes.fewUnique << '\n';
+    cout << "Insertion Sort: "  << setw(25) << insertionRes.random << setw(15) << insertionRes.reverse << setw(20) << insertionRes.nearly << setw(20) << insertionRes.fewUnique << '\n';
+    cout << "Merge Sort: "      << setw(29) << mergeRes.random     << setw(15) << mergeRes.reverse     << setw(20) << mergeRes.nearly     << setw(20) << mergeRes.fewUnique << '\n';
+    cout << "Quick Sort: "      << setw(29) << quickRes.random     << setw(15) << quickRes.reverse     << setw(20) << quickRes.nearly     << setw(20) << quickRes.fewUnique << '\n';
+    cout << "Heap Sort: "       << setw(30) << heapRes.random      << setw(15) << heapRes.reverse      << setw(20) << heapRes.nearly      << setw(20) << heapRes.fewUnique << '\n';
 
     //swaps and compares
-
-    cout << "Algorithm compares:" << setw(w) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << fixed << setprecision(2)<< left;
+    cout << "\n\n\nAlgorithm compares:" << setw(w) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
     cout << "==========\n";
 
     //Average times of each algorithm for each dataset
     /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
-    cout << "Selection Sort: " << setw(14) << selectionCompares.random << setw(15) << selectionCompares.reverse << setw(20) << selectionCompares.nearly << setw(20) << selectionCompares.fewUnique << '\n';
-    cout << "Exchange Sort: " << setw(15) << exchangeCompares.random << setw(15) << exchangeCompares.reverse << setw(20) << exchangeCompares.nearly << setw(20) << exchangeCompares.fewUnique << '\n';
-    cout << "Bubble Sort: " << setw(17) << bubbleRes.random << setw(15) << bubbleRes.reverse << setw(20) << bubbleRes.nearly << setw(20) << bubbleRes.fewUnique << '\n';
-    cout << "Insertion Sort: " << setw(14) << insertionRes.random << setw(15) << insertionRes.reverse << setw(20) << insertionRes.nearly << setw(20) << insertionRes.fewUnique << '\n';
-    cout << "Merge Sort: " << setw(18) << mergeRes.random << setw(15) << mergeRes.reverse << setw(20) << mergeRes.nearly << setw(20) << mergeRes.fewUnique << '\n';
-    cout << "Quick Sort: " << setw(18) << quickRes.random << setw(15) << quickRes.reverse << setw(20) << quickRes.nearly << setw(20) << quickRes.fewUnique << '\n';
-    cout << "Heap Sort: " << setw(19) << heapRes.random << setw(15) << heapRes.reverse << setw(20) << heapRes.nearly << setw(20) << heapRes.fewUnique << '\n';
+    cout << "Selection Sort: " << setw(35) << selectionCompares.random << setw(25) << selectionCompares.reverse << setw(20) << selectionCompares.nearly << setw(20) << selectionCompares.fewUnique << '\n';
+    cout << "Exchange Sort: " << setw(35) << exchangeCompares.random << setw(25) << exchangeCompares.reverse << setw(20) << exchangeCompares.nearly << setw(20) << exchangeCompares.fewUnique << '\n';
+    cout << "Bubble Sort: " << setw(35) << bubbleCompares.random << setw(25) << bubbleCompares.reverse << setw(20) << bubbleCompares.nearly << setw(20) << bubbleCompares.fewUnique << '\n';
+    cout << "Insertion Sort: " << setw(35) << insertionCompares.random << setw(25) << insertionCompares.reverse << setw(20) << insertionCompares.nearly << setw(20) << insertionCompares.fewUnique << '\n';
+    cout << "Merge Sort: " << setw(35) << mergeCompares.random << setw(25) << mergeCompares.reverse << setw(20) << mergeCompares.nearly << setw(20) << mergeCompares.fewUnique << '\n';
+    cout << "Quick Sort: " << setw(35) << quickRes.random << setw(25) << quickRes.reverse << setw(20) << quickRes.nearly << setw(20) << quickRes.fewUnique << '\n';
+    cout << "Heap Sort: " << setw(35) << heapRes.random << setw(25) << heapRes.reverse << setw(20) << heapRes.nearly << setw(20) << heapRes.fewUnique << '\n';
     
     return 0;
 }          

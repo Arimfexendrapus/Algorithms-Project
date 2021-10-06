@@ -9,7 +9,7 @@
 template <typename T>
 double bubbleSort(T array[], const size_t size)
 {
-
+    double compares = 0;
     bool notSorted = true;
     while (notSorted)
     {
