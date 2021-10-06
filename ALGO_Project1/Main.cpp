@@ -95,30 +95,32 @@ int main()
 
     // SELECTION SORT //
     AlgoResults selectionRes;
+    AlgoSwapResults swapCounts;
+    AlgoCompareResults compareCounts;
                                                                                     
     for (int i=0; i < times; i++)
     {
         //Random
         start = chrono::high_resolution_clock::now();                                     //Start time
-        selectionSort<int>(randomArr, randomArr.length);                                 //Call algorithm
+        compareCounts.random = selectionSort<int>(randomArr, randomArr.length,swapCounts.random);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         selectionRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Reverse sorted
         start = chrono::high_resolution_clock::now();                                      //Start time
-        selectionSort<int>(reverseSortedArr, reverseSortedArr.length);                    //Call algorithm
+        compareCounts.reverse = selectionSort<int>(reverseSortedArr, reverseSortedArr.length, swapCounts.reverse);                    //Call algorithm
         end = chrono::high_resolution_clock::now();                                      //End time
         selectionRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Nearly sorted
         start = chrono::high_resolution_clock::now();                                     //Start time
-        selectionSort<int>(nearlySortedArr, nearlySortedArr.length);                     //Call algorithm
+        compareCounts.nearly = selectionSort<int>(nearlySortedArr, nearlySortedArr.length, swapCounts.nearly);                     //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         selectionRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
         //Few unique
         start = chrono::high_resolution_clock::now();                                       //Start time
-        selectionSort<int>(fewUniqueArr, fewUniqueArr.length);                             //Call algorithm
+        compareCounts.fewUnique = selectionSort<int>(fewUniqueArr, fewUniqueArr.length, swapCounts.fewUnique);                             //Call algorithm
         end = chrono::high_resolution_clock::now();                                       //End time
         selectionRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();  //Get elapsed time
 
