@@ -60,8 +60,8 @@ void avg(AlgoResults& totals, const size_t size)
 int main()
 {
     //Constants
-    const unsigned int arrlen = 100;       //The amount of elements in each array
-    const unsigned int times  = 100;      //The amount of times to test each algorithm
+    const unsigned int arrlen = 1000;       //The amount of elements in each array
+    const unsigned int times  = 1000;      //The amount of times to test each algorithm
 
     //Datasets
     Dataset<int, arrlen, RANDOM>         randomArr;             //An array of {arrlen} elements, randomly distributed    
