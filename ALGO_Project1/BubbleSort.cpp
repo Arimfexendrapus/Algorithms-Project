@@ -7,7 +7,7 @@
 
 //Bubble sort
 template <typename T>
-void bubbleSort(T array[], const size_t size)
+double bubbleSort(T array[], const size_t size)
 {
 
     bool notSorted = true;
@@ -26,8 +26,10 @@ void bubbleSort(T array[], const size_t size)
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                 }
+                compares++;
             }
         }
+        return compares;
     }
 
 
