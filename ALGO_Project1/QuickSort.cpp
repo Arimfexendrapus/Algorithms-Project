@@ -5,14 +5,14 @@
 
 //Declare a pivot point -- put all smaller values before it and all larger values after it
 template <typename T>
-void partition(T array[], const size_t low, const size_t high, size_t& pivotpoint)
+void partition(T array[], const int low, const int high, int& pivotpoint)
 {
     //Pivotitem = given element, j = given index
     T pivotitem = array[low];
-    size_t j = low;
+    int j = low;
 
     //Iterate over all the following elements
-    for(size_t i=low+1; i <= high; i++)
+    for(int i=low+1; i <= high; i++)
     {
         //If the current element is less than the pivotitem
         if (array[i] < pivotitem)
@@ -31,9 +31,9 @@ void partition(T array[], const size_t low, const size_t high, size_t& pivotpoin
 
 //Quicksort
 template <typename T>
-void quickSort(T array[], const size_t low, const size_t high)
+void quickSort(T array[], const int low, const int high)
 {
-    size_t pivotpoint;
+    int pivotpoint;
 
     if (low < high)  //Stop sorting
     {
