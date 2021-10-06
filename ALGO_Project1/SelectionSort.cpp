@@ -35,6 +35,6 @@ int selectionSort(T array[], const size_t size, int& swaps)
         Swap<T>(array[i], array[min]);
         swaps++;
     }
-
+    return compares;
 }
 
