@@ -63,6 +63,8 @@ void merge(T array[], const size_t l, const size_t m, const size_t r, double& co
         j++;
         k++;
     }
+    delete left;
+    delete right;
 }
 
 
