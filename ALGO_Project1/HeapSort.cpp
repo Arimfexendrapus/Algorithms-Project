@@ -2,6 +2,8 @@
 
 //Swap function
 #include "Swap.cpp"
+
+//Contains 'size_t'
 #include <cstddef>
 
 // C++ program for implementation of Heap Sort
@@ -23,6 +25,7 @@ void heapify(T arr[], int n, int i,double& compares)
 	if (r < n && arr[r] > arr[largest])
 		largest = r;
 
+    //Add 1 for each of the compares
 	compares += 2;
 
 	// If largest is not root

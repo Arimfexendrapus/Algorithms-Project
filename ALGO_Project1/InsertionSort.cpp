@@ -1,5 +1,8 @@
 #pragma once
+
+//Contains 'size_t'
 #include <cstddef>
+
 //Insertion sort
 template <typename T>
 double insertionSort(T array[], const size_t size)
@@ -21,7 +24,7 @@ double insertionSort(T array[], const size_t size)
             array[iter + 1] = array[iter];
             --iter;
         }
-        compares += 2;
+        compares++;
 
         //Assign the extracted value (the key) to its spot
         array[iter + 1] = key;

@@ -2,8 +2,9 @@
 
 //Swap function
 #include "Swap.cpp"
+
+//Contains 'size_t'
 #include <cstddef>
-#include <algorithm>
 
 //Bubble sort
 template <typename T>
