@@ -21,11 +21,13 @@
 #include <random>         //Random number generators
 #include <algorithm>     //Sorting functions
 #include <type_traits>  //Type-info for type-guarding
-#include <new>        //Contains std::bad_alloc
-#include <cstddef>
+#include <new>         //Contains the std::bad_alloc exception
 
 //Native C Libraries
 #include <cstddef>     //Contains 'size_t'
+#include <cmath>      //Contains 'sqrt()'
+
+//No external dependencies; using the standard namespace;
 using namespace std;
 
 
@@ -38,8 +40,8 @@ template <typename T, size_t size, Distribution distT = RANDOM>  //Default distr
 class Dataset
 {
     //Guarding against non-numeric types and arrays of an invalid sizes
-    static_assert(is_integral<T>::value, "Dataset class can only be a integral type (int, unsigned int, short...etc)");
-    static_assert(size >= 12,"the size of a dataset cannot be less than 12!");
+    static_assert(is_integral<T>::value, "Dataset class can only be of an integral type (int, unsigned int, short...etc)");
+    static_assert(size > 0, "The size of the dataset must be a positive integer.");
 
 
     // DATA MEMBERS //
@@ -120,13 +122,13 @@ void Dataset<T, size, distT>::genRandomData(T max, T min)
     mt19937 RNG(rd());
 
     //Apply distribution
-    uniform_int_distribution<T> dist(min, max);   // TODO: allow for float/double overload via 'if constexpr' conditional compilation
+    uniform_int_distribution<T> distribution(min, max);   // TODO: allow for float/double overload via 'if constexpr' conditional compilation
 
     //Fill the array with random values
     for(size_t i=0; i < size; i++)
     {
         //Generate a random value between the minimum and maximum
-        array[i] = dist(RNG);
+        array[i] = distribution(RNG);
     }
 
     //Sort?
@@ -147,14 +149,13 @@ void Dataset<T, size, distT>::genRandomData(T max, T min)
     if (distT == NEARLY_SORTED)
     {
         //Mess up the order :D! (just a bit)
-        uniform_int_distribution<T> elem(0, size-1);              //Random element generator 
-        int element = static_cast<int>((elem(RNG)+1) * 0.05);    //Have to abstract the 'element' out instead of using the Elvis operator for non-GCC compatability :(
-        int amount = element > 0 ? element : 2;                 //Select a random amount of elements to swap (up to 10%)
+        uniform_int_distribution<T> randomIndex(0, size-1);      //Random index generator 
+        size_t amount = sqrt(sqrt(size));                       //Make this 'constinit' if using C++20
 
         for(size_t i=0; i < amount; i++)
         {
-           //Swap two random elements
-           swap(array[elem(RNG)], array[elem(RNG)]);  //Swapping elements displaces TWO elements per call, effectively doubling the dissort rate
+           //Swap two random element
+           swap(array[randomIndex(RNG)], array[randomIndex(RNG)]);
         }
     }
 }
@@ -171,21 +172,25 @@ void Dataset<T, size, distT>::genUniqueData(T max, T min)
     uniform_int_distribution<T> distribution(min, max);   // TODO: allow for float/double overload via 'if constexpr' conditional compilation
 
     /*
-    FEW_UNIQUE Implementation:
-    1. Generate a set random set of 6-12 random values (filling the first 6-12 elements of the array)
-    2. Use the filled slots to randomly fill the rest of the dataset
+        FEW_UNIQUE Implementation:
+        1. Fill the beginning of the array with {sqrt(size)} random elements
+        2. Use the filled slots to randomly fill the rest of the dataset
+        3. Remove the unique subset at the beginning of the array (the initial random elements) 
     */
 
-    //Apply random distributions
-    uniform_int_distribution<T> sampleDist(6,12);      //The amount of random elements to propgate the array with
-    uniform_int_distribution<T> selectionDist(0,11);  //Which array element to draw from
 
-    //Random amount of integers (6-12)
-    size_t amount = sampleDist(RNG), i = 0;  //the iterator 'i' delcare outside so it can span both loops
+    //The amount of unique elements is the square root of the size of the dataset
+    size_t amount = sqrt(size);       //Still using 'size_t' because the square root of 18.422 quintillion is still larger than max size of an int 
+    size_t i = 0;                    //The iterator 'i' delcare outside so it can span both loops
+
+    //Apply random distributions
+    uniform_int_distribution<T> randomSampleIndex(0, amount-1);   //Generate a random element of the sample list to draw from
+    uniform_int_distribution<T> randomIndex(0, size-1);          //Generate a random index in the array
 
     //Populate the sample list with a few random values
     for(i; i < amount; i++)
     {
+        //Generate a random value
         array[i] = distribution(RNG);
     }
 
@@ -193,7 +198,15 @@ void Dataset<T, size, distT>::genUniqueData(T max, T min)
     for(i; i < size; i++)  
     {
         //Generate a random value from the sample set
-        array[i] = array[selectionDist(RNG) % amount];
+        array[i] = array[randomSampleIndex(RNG)];
+    }
+
+
+    //Eliminate the unique subset at the beginning of the array (the sample list from the 1st for-loop)
+    for(int j=0; j < amount; j++)
+    {
+        //Swap the current element from the sample list with a random element
+        swap(array[j], array[randomIndex(RNG)]);
     }
 }
 
