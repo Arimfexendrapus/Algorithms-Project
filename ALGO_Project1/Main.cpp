@@ -87,7 +87,7 @@ int main()
     {
         //Random
         start = chrono::high_resolution_clock::now();                                     //Start time
-        selectionCompares.random += selectionSort<int>(randomArr, randomArr.length,selectionSwaps.random);                                 //Call algorithm
+        selectionCompares.random += selectionSort<int>(randomArr, randomArr.length, selectionSwaps.random);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         selectionRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
@@ -360,7 +360,8 @@ int main()
     avg(quickRes, times);
     avg(heapRes, times);
 
-    // COUNT AVERAGES
+
+    // AVERAGE COUNTS  //
     avg(selectionCompares, times);
     avg(exchangeCompares, times);
     avg(insertionCompares, times);
@@ -369,8 +370,7 @@ int main()
     avg(heapCompares, times);
     avg(bubbleCompares, times);
 
-    // SWAP AVERAGES
-
+    // AVERAGE SWAPS //
     avg(exchangeSwaps, times);
     avg(selectionSwaps, times);
 
@@ -381,11 +381,11 @@ int main()
     cout << "Length of Arrays: " << arrlen << '\n';
     cout << "Number of Trials: " << times << "\n\n";
 
-    cout << "Algorithm sort times:" << setw(18) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
-    cout << "==========\n";
+    cout << "Average Sort Times:" << setw(21) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "===================\n";
 
     //Average times of each algorithm for each dataset
-    /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
+    /*          Algorithm                        Random Dataset                       Reverse Sorted Dataset                      Nearly Sorted Dataset                          Few Unique Dataset        */
     cout << "Selection Sort: "  << setw(22) << selectionRes.random << "s" << setw(w-1) << selectionRes.reverse << "s" << setw(w-1) << selectionRes.nearly << "s" << setw(w-1) << selectionRes.fewUnique << "s" << '\n';
     cout << "Exchange Sort: "   << setw(23) << exchangeRes.random  << "s" << setw(w-1) << exchangeRes.reverse  << "s" << setw(w-1) << exchangeRes.nearly  << "s" << setw(w-1) << exchangeRes.fewUnique  << "s" << '\n';
     cout << "Bubble Sort: "     << setw(25) << bubbleRes.random    << "s" << setw(w-1) << bubbleRes.reverse    << "s" << setw(w-1) << bubbleRes.nearly    << "s" << setw(w-1) << bubbleRes.fewUnique    << "s" << '\n';
@@ -396,12 +396,12 @@ int main()
 
     // compares
 
-    cout << fixed << setprecision(2)<<right;
-    cout << "\n\n\nAlgorithm compares:" << setw(w) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
-    cout << "==========\n";
+    cout << fixed << setprecision(2) << right;
+    cout << "\n\n\nAverage Comparisons:" << setw(w-1) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "=================\n";
 
     //Average times of each algorithm for each dataset
-    /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
+    /*          Algorithm                          Random Dataset                      Reverse Sorted Dataset                  Nearly Sorted Dataset                      Few Unique Dataset        */
     cout << "Selection Sort: "  << setw(22) << selectionCompares.random << setw(w) << selectionCompares.reverse << setw(w) << selectionCompares.nearly << setw(w) << selectionCompares.fewUnique << '\n';
     cout << "Exchange Sort: "   << setw(23) << exchangeCompares.random  << setw(w) << exchangeCompares.reverse  << setw(w) << exchangeCompares.nearly  << setw(w) << exchangeCompares.fewUnique  << '\n';
     cout << "Bubble Sort: "     << setw(25) << bubbleCompares.random    << setw(w) << bubbleCompares.reverse    << setw(w) << bubbleCompares.nearly    << setw(w) << bubbleCompares.fewUnique    << '\n';
@@ -413,13 +413,13 @@ int main()
 
     //swaps 
     cout << fixed << setprecision(2) << right;
-    cout << "\n\n\nAlgorithm swaps:" << setw(23) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
-    cout << "==========\n";
+    cout << "\n\n\nAverage Swaps:" << setw(23) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "==============\n";
 
     //Average times of each algorithm for each dataset
-    /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset              Nearly Sorted Dataset                 Few Unique Dataset        */
-    cout << "Selection Sort: " << setw(22) << selectionSwaps.random << setw(w) << selectionSwaps.reverse << setw(w) << selectionSwaps.nearly << setw(w) << selectionSwaps.fewUnique << '\n';
-    cout << "Exchange Sort: " << setw(23) << exchangeSwaps.random << setw(w) << exchangeSwaps.reverse << setw(w) << exchangeSwaps.nearly << setw(w) << exchangeSwaps.fewUnique << '\n';
+    /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset               Nearly Sorted Dataset                  Few Unique Dataset        */
+    cout << "Selection Sort: " << setw(20) << selectionSwaps.random << setw(w) << selectionSwaps.reverse << setw(w) << selectionSwaps.nearly << setw(w) << selectionSwaps.fewUnique << '\n';
+    cout << "Exchange Sort: " << setw(21) << exchangeSwaps.random << setw(w) << exchangeSwaps.reverse << setw(w) << exchangeSwaps.nearly << setw(w) << exchangeSwaps.fewUnique << '\n';
 
     return 0;
 }          
