@@ -366,7 +366,8 @@ int main()
     avg(insertionCompares, times);
     avg(mergeCompares, times);
     avg(quickCompares, times);
-    avg(mergeCompares, times);
+    avg(heapCompares, times);
+    avg(bubbleCompares, times);
 
     // SWAP AVERAGES
 
