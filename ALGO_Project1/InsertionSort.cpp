@@ -17,14 +17,20 @@ double insertionSort(T array[], const size_t size)
         //Store the value of the current index in the key, and its predecessor in iter
         key = array[i];
         iter = i - 1;
+        bool addCompare = true;
 
         //Move all the elements between the key and its spot back by 1
         while (key < array[iter] and iter >= 0)
         {
             array[iter + 1] = array[iter];
             --iter;
+            compares++;
+            addCompare = false;
         }
-        compares++;
+        if (addCompare)
+        {
+            compares++;
+        }
 
         //Assign the extracted value (the key) to its spot
         array[iter + 1] = key;
