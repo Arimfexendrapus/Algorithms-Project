@@ -135,34 +135,10 @@ int main()
     {
         //Random
         start = chrono::high_resolution_clock::now();                                    //Start time
-        exchangeCompares.random += exchangeSort<int>(randomArr, randomArr.length, exchangeSwaps.random);                                 //Call algorithm
+        exchangeCompares.random += exchangeSort<int>(groupsArray0, 1000, exchangeSwaps.random);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                    //End time
         exchangeRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
-
-        //Reverse sorted
-        start = chrono::high_resolution_clock::now();                                     //Start time
-        exchangeCompares.reverse += exchangeSort<int>(reverseSortedArr, reverseSortedArr.length, exchangeSwaps.reverse);                    //Call algorithm
-        end = chrono::high_resolution_clock::now();                                     //End time
-        exchangeRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Nearly sorted
-        start = chrono::high_resolution_clock::now();                                    //Start time
-        exchangeCompares.nearly += exchangeSort<int>(nearlySortedArr, nearlySortedArr.length, exchangeSwaps.nearly);                     //Call algorithm
-        end = chrono::high_resolution_clock::now();                                    //End time
-        exchangeRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Few unique
-        start = chrono::high_resolution_clock::now();                                      //Start time
-        exchangeCompares.fewUnique += exchangeSort<int>(fewUniqueArr, fewUniqueArr.length, exchangeSwaps.fewUnique);                             //Call algorithm
-        end = chrono::high_resolution_clock::now();                                      //End time
-        exchangeRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();  //Get elapsed time
-
-        //Generate new data
-        randomArr.genNewData();
-        reverseSortedArr.genNewData();
-        nearlySortedArr.genNewData();
-        fewUniqueArr.genNewData();
     }
 
 
@@ -174,33 +150,10 @@ int main()
     {
         //Random data
         start = chrono::high_resolution_clock::now();                                     //Start time
-        bubbleCompares.random += bubbleSort<int>(randomArr, randomArr.length);                                    //Call algorithm
+        bubbleCompares.random += bubbleSort<int>(groupsArray1, 1000);                                    //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         bubbleRes.random += chrono::duration_cast<fpsecond>(end - start).count();      //Get elapsed time
 
-        //Reverse sorted
-        start = chrono::high_resolution_clock::now();                                     //Start time
-        bubbleCompares.reverse += bubbleSort<int>(reverseSortedArr, reverseSortedArr.length);                      //Call algorithm
-        end = chrono::high_resolution_clock::now();                                     //End time
-        bubbleRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();     //Get elapsed time
-
-        //Nearly sorted
-        start = chrono::high_resolution_clock::now();                                     //Start time
-        bubbleCompares.nearly += bubbleSort<int>(nearlySortedArr, nearlySortedArr.length);                        //Call algorithm
-        end = chrono::high_resolution_clock::now();                                     //End time
-        bubbleRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();      //Get elapsed time
-
-        //Few unique
-        start = chrono::high_resolution_clock::now();                                     //Start time
-        bubbleCompares.fewUnique += bubbleSort<int>(fewUniqueArr, fewUniqueArr.length);                              //Call algorithm
-        end = chrono::high_resolution_clock::now();                                     //End time
-        bubbleRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Generate new data
-        randomArr.genNewData();
-        reverseSortedArr.genNewData();
-        nearlySortedArr.genNewData();
-        fewUniqueArr.genNewData();
     }
 
 
@@ -212,33 +165,10 @@ int main()
     {
         //Random
         start = chrono::high_resolution_clock::now();                                     //Start time
-        insertionCompares.random += insertionSort<int>(randomArr, randomArr.length);                                 //Call algorithm
+        insertionCompares.random += insertionSort<int>(groupsArray2, 1000);                                 //Call algorithm
         end = chrono::high_resolution_clock::now();                                     //End time
         insertionRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
-        //Reverse sorted
-        start = chrono::high_resolution_clock::now();                                      //Start time
-        insertionCompares.reverse += insertionSort<int>(reverseSortedArr, reverseSortedArr.length);                    //Call algorithm
-        end = chrono::high_resolution_clock::now();                                      //End time
-        insertionRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Nearly sorted 
-        start = chrono::high_resolution_clock::now();                                     //Start time
-        insertionCompares.nearly += insertionSort<int>(nearlySortedArr, nearlySortedArr.length);                     //Call algorithm
-        end = chrono::high_resolution_clock::now();                                     //End time
-        insertionRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Few unique
-        start = chrono::high_resolution_clock::now();                                        //Start time
-        insertionCompares.fewUnique += insertionSort<int>(fewUniqueArr, fewUniqueArr.length);                              //Call algorithm
-        end = chrono::high_resolution_clock::now();                                        //End time
-        insertionRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Generate new data
-        randomArr.genNewData();
-        reverseSortedArr.genNewData();
-        nearlySortedArr.genNewData();
-        fewUniqueArr.genNewData();
     }
            
     
@@ -250,33 +180,10 @@ int main()
     {
         //Random 
         start = chrono::high_resolution_clock::now();                                 //Start time
-        mergeSort<int>(randomArr, 0, randomArr.length-1,mergeCompares.random);                            //Call algorithm
+        mergeSort<int>(groupsArray3, 0, 1000-1,mergeCompares.random);                            //Call algorithm
         end = chrono::high_resolution_clock::now();                                 //End time
         mergeRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
-        //Reverse sorted
-        start = chrono::high_resolution_clock::now();                                  //Start time
-        mergeSort<int>(reverseSortedArr, 0, reverseSortedArr.length-1, mergeCompares.reverse);               //Call algorithm
-        end = chrono::high_resolution_clock::now();                                  //End time
-        mergeRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Nearly sorted
-        start = chrono::high_resolution_clock::now();                                 //Start time
-        mergeSort<int>(nearlySortedArr, 0, nearlySortedArr.length-1, mergeCompares.nearly);                //Call algorithm
-        end = chrono::high_resolution_clock::now();                                 //End time
-        mergeRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Few unique
-        start = chrono::high_resolution_clock::now();                                    //Start time
-        mergeSort<int>(fewUniqueArr, 0, fewUniqueArr.length-1, mergeCompares.fewUnique);                         //Call algorithm
-        end = chrono::high_resolution_clock::now();                                    //End time
-        mergeRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Generate new data
-        randomArr.genNewData();
-        reverseSortedArr.genNewData();
-        nearlySortedArr.genNewData();
-        fewUniqueArr.genNewData();
     }
 
     
@@ -288,34 +195,10 @@ int main()
     {
         //Random 
         start = chrono::high_resolution_clock::now();                                 //Start time
-        quickSort<int>(randomArr, 0, randomArr.length-1, quickCompares.random);                            //Call algorithm
+        quickSort<int>(groupsArray4, 0, 1000-1, quickCompares.random);                            //Call algorithm
         end = chrono::high_resolution_clock::now();                                 //End time
         quickRes.random += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
 
-        
-        //Reverse sorted
-        start = chrono::high_resolution_clock::now();                                  //Start time
-        quickSort<int>(reverseSortedArr, 0, reverseSortedArr.length-1, quickCompares.reverse);               //Call algorithm
-        end = chrono::high_resolution_clock::now();                                  //End time
-        quickRes.reverse += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Nearly sorted
-        start = chrono::high_resolution_clock::now();                                 //Start time
-        quickSort<int>(nearlySortedArr, 0, nearlySortedArr.length-1, quickCompares.nearly);                //Call algorithm
-        end = chrono::high_resolution_clock::now();                                 //End time
-        quickRes.nearly += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Few unique
-        start = chrono::high_resolution_clock::now();                                    //Start time
-        quickSort<int>(fewUniqueArr, 0, fewUniqueArr.length-1, quickCompares.fewUnique);                         //Call algorithm
-        end = chrono::high_resolution_clock::now();                                    //End time
-        quickRes.fewUnique += chrono::duration_cast<fpsecond>(end - start).count();   //Get elapsed time
-
-        //Generate new data
-        randomArr.genNewData();
-        reverseSortedArr.genNewData();
-        nearlySortedArr.genNewData();
-        fewUniqueArr.genNewData();
         
     }
 
