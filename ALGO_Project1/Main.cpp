@@ -201,45 +201,45 @@ int main()
     cout << "Length of Arrays: " << arrlen << '\n';
     cout << "Number of Trials: " << times << "\n\n";
 
-    cout << "Average Sort Times:" << setw(21) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "Average Sort Times:" << setw(21) << "Given Set" <<"\n";
     cout << "===================\n";
 
     //Average times of each algorithm for each dataset
     /*          Algorithm                        Random Dataset                       Reverse Sorted Dataset                      Nearly Sorted Dataset                          Few Unique Dataset        */
-    cout << "Selection Sort: "  << setw(22) << selectionRes.random << "s" << setw(w-1) << selectionRes.reverse << "s" << setw(w-1) << selectionRes.nearly << "s" << setw(w-1) << selectionRes.fewUnique << "s" << '\n';
-    cout << "Exchange Sort: "   << setw(23) << exchangeRes.random  << "s" << setw(w-1) << exchangeRes.reverse  << "s" << setw(w-1) << exchangeRes.nearly  << "s" << setw(w-1) << exchangeRes.fewUnique  << "s" << '\n';
-    cout << "Bubble Sort: "     << setw(25) << bubbleRes.random    << "s" << setw(w-1) << bubbleRes.reverse    << "s" << setw(w-1) << bubbleRes.nearly    << "s" << setw(w-1) << bubbleRes.fewUnique    << "s" << '\n';
-    cout << "Insertion Sort: "  << setw(22) << insertionRes.random << "s" << setw(w-1) << insertionRes.reverse << "s" << setw(w-1) << insertionRes.nearly << "s" << setw(w-1) << insertionRes.fewUnique << "s" << '\n';
-    cout << "Merge Sort: "      << setw(26) << mergeRes.random     << "s" << setw(w-1) << mergeRes.reverse     << "s" << setw(w-1) << mergeRes.nearly     << "s" << setw(w-1) << mergeRes.fewUnique     << "s" << '\n';
-    cout << "Quick Sort: "      << setw(26) << quickRes.random     << "s" << setw(w-1) << quickRes.reverse     << "s" << setw(w-1) << quickRes.nearly     << "s" << setw(w-1) << quickRes.fewUnique     << "s" << '\n';
-    cout << "Heap Sort: "       << setw(27) << heapRes.random      << "s" << setw(w-1) << heapRes.reverse      << "s" << setw(w-1) << heapRes.nearly      << "s" << setw(w-1) << heapRes.fewUnique      << "s" << '\n';
+    cout << "Selection Sort: "  << setw(22) << selectionRes.random << "s" << '\n';
+    cout << "Exchange Sort: "   << setw(23) << exchangeRes.random  << "s" << '\n';
+    cout << "Bubble Sort: "     << setw(25) << bubbleRes.random    << "s" << '\n';
+    cout << "Insertion Sort: "  << setw(22) << insertionRes.random << "s" << '\n';
+    cout << "Merge Sort: "      << setw(26) << mergeRes.random     << "s" << '\n';
+    cout << "Quick Sort: "      << setw(26) << quickRes.random     << "s" << '\n';
+    cout << "Heap Sort: "       << setw(27) << heapRes.random      << "s" << '\n';
 
     // compares
 
     cout << fixed << setprecision(2) << right;
-    cout << "\n\n\nAverage Comparisons:" << setw(w-1) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "\n\n\nAverage Comparisons:" << setw(w-1) << "Given Set " << "\n";
     cout << "====================\n";
 
     //Average times of each algorithm for each dataset
     /*          Algorithm                          Random Dataset                      Reverse Sorted Dataset                  Nearly Sorted Dataset                      Few Unique Dataset        */
-    cout << "Selection Sort: "  << setw(22) << selectionCompares.random << setw(w) << selectionCompares.reverse << setw(w) << selectionCompares.nearly << setw(w) << selectionCompares.fewUnique << '\n';
-    cout << "Exchange Sort: "   << setw(23) << exchangeCompares.random  << setw(w) << exchangeCompares.reverse  << setw(w) << exchangeCompares.nearly  << setw(w) << exchangeCompares.fewUnique  << '\n';
-    cout << "Bubble Sort: "     << setw(25) << bubbleCompares.random    << setw(w) << bubbleCompares.reverse    << setw(w) << bubbleCompares.nearly    << setw(w) << bubbleCompares.fewUnique    << '\n';
-    cout << "Insertion Sort: "  << setw(22) << insertionCompares.random << setw(w) << insertionCompares.reverse << setw(w) << insertionCompares.nearly << setw(w) << insertionCompares.fewUnique << '\n';
-    cout << "Merge Sort: "      << setw(26) << mergeCompares.random     << setw(w) << mergeCompares.reverse     << setw(w) << mergeCompares.nearly     << setw(w) << mergeCompares.fewUnique     << '\n';
-    cout << "Quick Sort: "      << setw(26) << quickCompares.random     << setw(w) << quickCompares.reverse     << setw(w) << quickCompares.nearly     << setw(w) << quickCompares.fewUnique     << '\n';
-    cout << "Heap Sort: "       << setw(27) << heapCompares.random      << setw(w) << heapCompares.reverse      << setw(w) << heapCompares.nearly      << setw(w) << heapCompares.fewUnique      << '\n';
+    cout << "Selection Sort: "  << setw(22) << selectionCompares.random << '\n';
+    cout << "Exchange Sort: "   << setw(23) << exchangeCompares.random  << '\n';
+    cout << "Bubble Sort: "     << setw(25) << bubbleCompares.random    << '\n';
+    cout << "Insertion Sort: "  << setw(22) << insertionCompares.random << '\n';
+    cout << "Merge Sort: "      << setw(26) << mergeCompares.random     << '\n';
+    cout << "Quick Sort: "      << setw(26) << quickCompares.random     << '\n';
+    cout << "Heap Sort: "       << setw(27) << heapCompares.random      << '\n';
     
 
     //swaps 
     cout << fixed << setprecision(2) << right;
-    cout << "\n\n\nAverage Swaps:" << setw(25) << "Random " << setw(w) << "Reverse Sorted " << setw(w) << "Nearly Sorted " << setw(w) << "Few Unique\n";
+    cout << "\n\n\nAverage Swaps:" << setw(25) << "Given Set " << "\n";
     cout << "==============\n";
 
     //Average times of each algorithm for each dataset
     /*          Algorithm                        Random Dataset                  Reverse Sorted Dataset               Nearly Sorted Dataset                  Few Unique Dataset        */
-    cout << "Selection Sort: " << setw(22) << selectionSwaps.random << setw(w) << selectionSwaps.reverse << setw(w) << selectionSwaps.nearly << setw(w) << selectionSwaps.fewUnique << '\n';
-    cout << "Exchange Sort: " << setw(23) << exchangeSwaps.random << setw(w) << exchangeSwaps.reverse << setw(w) << exchangeSwaps.nearly << setw(w) << exchangeSwaps.fewUnique << '\n';
+    cout << "Selection Sort: " << setw(22) << selectionSwaps.random << '\n';
+    cout << "Exchange Sort: " << setw(23) << exchangeSwaps.random << '\n';
 
     return 0;
 }          
